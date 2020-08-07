@@ -1,0 +1,186 @@
+{{ form_start(form) }}
+    
+    <div class="main-content">
+        <div class="container">
+            <div class="content">
+                <div class="row">
+                    <div class="col-sm-8 pl-4">
+                        <div class="title">
+                            <p class="h5">Code</p>
+                        </div>
+                        <div class="row code-block">
+
+                            <!--<div class="col-sm input-qrcode">
+                               <div class="input-group input-group-lg">
+                                    <span class="input-group-prepend">
+                                        <label class="input-group-text" id="inputGroup-sizing-lg">
+                                            <i class="fas fa-qrcode"></i>
+                                        </label>
+                                    </span>
+                                    <input type="text" class="form-control form-control" placeholder="Code">
+                                </div>
+                            </div>-->
+                            <div class="col-sm">
+                                <div class="qrcode text-center">
+                                    <div class="placeholder-img">
+                                        <!--<img src="../img/placeholder/none-log-border.png">-->
+                                        <img src="{{ qr_code_data_uri('dfg654dfg4se', { writer: 'svg', size: 120 }) }}" />
+                                        {{ form_widget(form.qrcode) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-block pt-50">
+                              <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                  {{ form_label(form.label, 'Libélle') }}
+                                  {{ form_widget(form.label, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Libélle'}}) }}
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                      {{ form_label(form.ref, 'Réference') }}
+                            			     {{ form_widget(form.ref, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Réference'}}) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        
+                                    {{ form_label(form.ref_provider, 'Réference fournisseur') }}
+                            			  {{ form_widget(form.ref_provider, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Réference fournisseur'}}) }}
+                                    </div>
+                                </div>
+                              </div >
+                              <div class="row">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                      {{ form_label(form.maker, 'Fabricant') }}
+                            			    {{ form_widget(form.maker, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Fabricant'}}) }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                         {{ form_label(form.description, 'Description') }}
+                            			 {{ form_widget(form.description, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Description'}}) }}
+                                    </div>
+                                </div>
+                              </div>
+                              <div class="form-group col-md-6 col-sm-12 pl-0">
+                                {{ form_label(form.ref_maker, 'Référence fabricant') }}
+                            	  {{ form_widget(form.ref_maker, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Référence fabricant'}}) }}
+                              </div>
+                              <div class="form-group col-md-6 col-sm-12 pl-0">
+                                {{ form_label(form.danger, 'Dangereux') }}
+                              	{{ form_widget(form.danger, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Dangereux'}}) }}
+                              </div>
+
+                            <div class="pt-4">
+                                <div class="input-group input-group-lg mb-3">
+                                  <div class="input-group-prepend">
+                                  	{{ form_label(form.description, 'FOURNISSEURS', {'attr': {'class': 'input-group-text'}}) }}
+                              	  </div>
+                            	  {{ form_widget(form.description, {'attr': {'class': 'form-control form-control-lg custom-select', 'placeholder': 'FOURNISSEURS'}}) }}
+                                </div>
+                            </div>
+
+                            <div class="pt-4">
+                                <div class="input-group input-group-lg mb-3">
+                                  <div class="input-group-prepend">
+                                    <label class="input-group-text" for="cat">CATÉGORIE</label>
+                                  </div>
+                                  <select class="form-control custom-select" id="cat">
+                                    <option>Catégorie</option>
+                                    <option selected>Aucun résultat trouvé</option>
+                                  </select>
+                                </div>
+                                <div class="input-group input-group-lg mb-3">
+                                  <div class="input-group-prepend">
+                                  	{{ form_label(form.description, 'CATÉGORIE', {'attr': {'class': 'input-group-text'}}) }}
+                              	  </div>
+                            	     {{ form_widget(form.description, {'attr': {'class': 'form-control form-control-lg custom-select', 'placeholder': 'FOURNISSEURS'}}) }}
+                                </div>
+                            </div>
+
+                            <div class="pt-4">
+                                <div class="input-group input-group-lg mb-3">
+                                  <div class="input-group-prepend">
+                                    <label class="input-group-text" for="tag">Tags</label>
+                                  </div>
+                                  <select class="form-control custom-select" id="tag">
+                                    <option selected>Tags</option>
+                                    <option>Aucun résultat trouvé</option>
+                                  </select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-4 py-4">
+                        <div class="upload">
+                            <h4 class="font-weight-bold text-muted">
+                                Ajouter une image
+                              </h4>
+                              <div class="upload-btn-wrapper">
+                                <label class="image-btn btn-block">Télécharger image</label>
+                                {{ form_widget(form.image, {'attr': {'class': 'btn btn-lg btn-block' }}) }}
+                              </div>
+                              <div class="form-error">
+                                  {{ form_errors(form.image) }}
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-title pl-4 pt-3">
+                <p class="h5">Prix & Caractéristiques</p>
+            </div>
+            <div class="content section-prix">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            {{ form_label(form.price, 'Prix') }}
+                            {{ form_widget(form.price, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Prix'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        {{ form_label(form.unit, 'Unité') }}
+                        {{ form_widget(form.unit, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Unité'}}) }}
+                    </div>
+                  </div>
+                  
+                  <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                          {{ form_label(form.color, 'Couleur') }}
+                          {{ form_widget(form.color, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Couleur'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                          {{ form_label(form.weight, 'Poinds') }}
+                          {{ form_widget(form.weight, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Poinds'}}) }}
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                          {{ form_label(form.size, 'Taille') }}
+                          {{ form_widget(form.size, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Taille'}}) }}
+                        </div>
+                    </div>
+                  </div >
+            </div><!-- section-prix -->
+
+            <div class="section-button pr-4 pt-3">
+                <div class="float-right my-4">
+                  <button type="submit" class="btn btn-warning btn-lg">Enregistrer</button>  
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+
+{{ form_end(form) }}

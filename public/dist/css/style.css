@@ -1,0 +1,274 @@
+.content-block .form-group .form-control ~ i {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+}
+.content-block .form-group .form-control ~ i {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+}
+.content{
+	margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    padding: 30px 20px;
+    background-color: #ffff;
+    border-radius: 5px;
+}
+.content .form-group{
+    text-align: left;
+}
+.content-block{
+    margin: 0;
+    padding: 30px 20px;
+    background-color: #eeeeef;
+    border-radius: 5px;
+}
+.dashed-block.my-4 {
+    padding: 40px 30px;
+    background-color: #fff;
+    border: 2px dashed #6b6a6a;
+    border-radius: 8px;
+}
+.products{
+	margin: 10px 0;
+	padding: 10px 10px;
+	background-color: #fff;
+}
+.products span.badge{
+	position: absolute;
+    top: 2px;
+    right: 0px;
+    color: #fff;
+    z-index: 1;
+}
+.code-block{
+	margin: 0 30px;
+	margin-left: 0;
+    height: 150px;
+    align-items: center;
+    border: 1px solid #a2a2a2;
+    border-radius: 8px;
+}
+.input-qrcode{
+	background-color: #f1f1f1;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    border-right: 2px solid #000;
+    border-right: 2px dashed #4c4b4b;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px; 
+}
+.input-qrcode input{
+	border-color: #c3c3c3;
+    box-shadow: 3px 3px 3px #e8e6e6;
+}
+.input-qrcode .input-group{ margin: 0; }
+.input-qrcode label{
+	background-color: #d4d5d6 !important;
+}
+.form-block label, .section-prix label{
+	font-size: 18px;
+	font-weight: 600;
+	color: #464343;
+}
+.input-group .input-group-prepend .input-group-text {
+    background-color: #5f5d5d;
+    color: #fff;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+ }
+ .input-group select{
+ 	border-color: #c3c3c3;
+    box-shadow: 3px 3px 3px #e8e6e6;
+ }
+.btn-height{
+	height: 50px;
+}
+
+/*------ Progress bar -------*/
+
+#msform {
+    text-align: center;
+    position: relative;
+    margin-top: 20px
+}
+
+#msform fieldset .form-card {
+    background: white;
+    border: 0 none;
+    border-radius: 0px;
+    padding: 20px 40px 30px 40px;
+    margin: 0 3% 20px 3%;
+    position: relative
+}
+
+#msform fieldset {
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 20px;
+    position: relative
+}
+
+#msform fieldset:not(:first-of-type) {
+    display: none
+}
+
+#msform fieldset .form-card {
+    text-align: left;
+    color: #9E9E9E
+}
+#msform .form-group{ 
+    text-align: left;
+}
+#msform .form-group label{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+select.list-dt {
+    border: none;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    padding: 2px 5px 3px 5px;
+    margin: 2px
+}
+
+.cards {
+    z-index: 0;
+    border: none;
+    border-radius: 0.5rem;
+    position: relative
+}
+
+.fs-title {
+    font-size: 25px;
+    color: #2C3E50;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: left
+}
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: #5f5d5d;
+}
+
+#progressbar .active {
+    color: #000000
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 12px;
+    width: 25%;
+    float: left;
+    position: relative
+}
+
+#progressbar #account:before {
+    font-family: FontAwesome;
+    content: "\f067"
+}
+
+#progressbar #personal:before {
+    font-family: FontAwesome;
+    content: "\f110"
+}
+
+#progressbar #payment:before {
+    font-family: FontAwesome;
+    content: "\f0ae"
+}
+
+#progressbar #confirm:before {
+    font-family: FontAwesome;
+    content: "\f00c"
+}
+
+#progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 18px;
+    color: #ffffff;
+    background: #5f5d5d;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: #5f5d5d;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #fb6340;
+}
+/*------ /Progress bar -------*/
+/*------ File upload ---------*/
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.image-btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+/*------ /File upload ---------*/
+
+.alert-dismissible{
+    position: absolute;
+    right: 4px;
+    transform: translate(10px, 10px);
+    transition-delay: 5s;
+    z-index: 999;
+    transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    -ms-transition: all 1s ease-in-out;
+    
+    transform: translate(0,-15em);
+    -webkit-transform: translate(0, -15em);
+    -moz-transform: translate(0,-15em);
+    -o-transform: translate(0,-15em);
+    -ms-transform: translate(0,-15em);
+}
+.alert-dismissible.anime{
+    transform: translate(0,0);
+    -webkit-transform: translate(0,0);
+    -moz-transform: translate(0,0);
+    -o-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+}

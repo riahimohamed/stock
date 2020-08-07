@@ -1,0 +1,224 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste Produits{% endblock %}
+
+{% block body %}
+
+<div class="main-content">
+    <div class="container">
+
+        <div class="content-block">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="title">
+                        <h1 class="h2 mt-0">
+                            <i class="ik ik-package"></i> Liste produits
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Recherche" required="">
+                            <i class="ik ik-user"></i>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div><!-- content-block -->
+
+        <div class="dashed-block my-4">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="title">
+                        <h2 class="text-muted">Créez votre premier produit</h2>
+                    </div>
+                </div>
+                <div class="col-md-4 text-right">
+                    <a href="{{ path('product_new') }}" class="btn btn-warning btn-lg">
+                        Démarrer
+                    </a>
+                </div>
+            </div>
+        </div><!-- content -->
+
+        <div class="table-block my-5">
+            <div class="col-md-12">
+                <div class="card table-card">
+                    <div class="card-header">
+                        <h3>Produits</h3>
+                        <div class="card-header-right">
+                            <ul class="list-unstyled card-option">
+                                <li><i class="ik ik-chevron-left action-toggle"></i></li>
+                                <li><i class="ik ik-minus minimize-card"></i></li>
+                                <li><i class="ik ik-x close-card"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Référence</th>
+                                        <th>Libellé</th>
+                                        <th>QR Code</th>
+                                        <th>Réference fabricant</th>
+                                        <th>Prix</th>
+                                        <th>Unité</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for product in products %}
+                                        <tr>
+                                            <td>
+                                                <div class="d-inline-block align-middle">
+                                                    <img src="{{ asset('uploads/products/'~ product.image) }}" alt="user image" class="rounded-circle img-40 align-top mr-15">
+                                                    <div class="d-inline-block">
+                                                        <h6>{{ product.refProvider }}</h6>
+                                                        <p class="text-muted mb-0">
+                                                            {{ product.createdAt ? product.createdAt|date('Y-m-d') : '' }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>{{ product.ref }}</td>
+                                            <td>{{ product.label }}</td>
+                                            <td>{{ product.qrcode }}</td>
+                                            <td>{{ product.refmaker }}</td>
+                                            <td>{{ product.price }}</td>
+                                            <td>{{ product.unit }}</td>
+                                            <td>
+                                                <a href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem">
+                                                    <i class="ik ik-eye f-16 mr-15 text-green"></i>
+                                                </a>
+                                                <a href="{{ path('product_edit', {'id': product.id}) }}">
+                                                    <i class="ik ik-edit f-16 text-green"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <div class="modal fade edit-layout-modal" id="editLayoutItem" tabindex="-1" role="dialog" aria-labelledby="editLayoutItemLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="editLayoutItemLabel">
+                                                        {{ product.label }}
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="lead">
+                                                        {{ product.qrcode }} {{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}
+                                                    </p>
+                                                    <p>{{ product.description }}</p>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <img src="{{ asset('uploads/products/' ~ product.image) }}" class="img-fluid" alt="">
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="col-md-12">
+                                                        <div class="card latest-update-card">
+                                                            <div class="card-header">
+                                                                <h3>{{ product.ref }} {{ product.refprovider }}</h3>
+                                                                
+                                                            </div>
+                                                            <div class="card-block">
+                                                                <div class="scroll-widget">
+                                                                    <div class="latest-update-box">
+                                                                        <div class="row pt-20 pb-30">
+                                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                                <i class="b-primary update-icon ring"></i>
+                                                                            </div>
+                                                                            <div class="col pl-5">
+                                                                                <h6>Fabricant</h6>
+                                                                                <p class="text-muted mb-0">{{ product.maker }}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row pb-30">
+                                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                                <i class="b-primary update-icon ring"></i>
+                                                                            </div>
+                                                                            <div class="col pl-5">
+                                                                                <h6>Ref Fabricant</h6>
+                                                                                <p class="text-muted mb-0">{{ product.refmaker }}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row pb-30">
+                                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                                <i class="b-success update-icon ring"></i>
+                                                                            </div>
+                                                                            <div class="col pl-5">
+                                                                                <h6>Prix</h6>
+                                                                                <p class="text-muted mb-0">{{ product.price }}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row pb-30">
+                                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                                <i class="b-primary update-icon ring"></i>
+                                                                            </div>
+                                                                            
+                                                                            <div class="col pl-5">
+                                                                                <h6>Unité</h6>
+                                                                                <p class="text-muted mb-0">{{ product.unit }}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row pb-30">
+                                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                                <i class="b-success update-icon ring"></i>
+                                                                            </div>
+                                                                            <div class="col pl-5">
+                                                                                <h6>Dangereux</h6>
+                                                                                <p class="text-muted mb-0">
+                                                                                {% if product.danger == 1 %}
+                                                                                    Oui
+                                                                                {% else %}
+                                                                                    Non
+                                                                                {% endif %}        
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                                <i class="b-danger update-icon ring"></i>
+                                                                            </div>
+                                                                            <div class="col pl-5">
+                                                                                <h6>Couleur</h6>
+                                                                                <p class="text-muted mb-0">{{ product.color }}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <a href="layout-edit-item.html" class="btn btn-primary">Edit</a>
+                                                    <button type="button" class="btn btn-danger list-delete">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {% else %}
+                                        <tr>
+                                            <td align="center" colspan="16">Aucun produit</td>
+                                        </tr>
+                                    {% endfor %}
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- table-block -->
+    </div>
+</div>
+
+{% endblock %}

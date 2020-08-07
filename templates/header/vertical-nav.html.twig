@@ -1,0 +1,139 @@
+<div class="app-sidebar colored">
+    <div class="sidebar-header">
+        <a class="header-brand" href="{{ path('home') }}">
+            <div class="logo-img">
+               <!--<img src="src/img/brand-white.svg" class="header-brand-img" alt="lavalite">-->
+               <span>GS<i class="text-danger">.</i></span>
+            </div>
+            <span class="text"> GStock</span>
+        </a>
+        <button type="button" class="nav-toggle">
+            <i data-toggle="expanded" class="ik ik-toggle-right toggle-icon"></i>
+        </button>
+        <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
+    </div>
+    
+    <div class="sidebar-content">
+        <div class="nav-container">
+            <nav id="main-menu-navigation" class="navigation-main">
+                <div class="nav-lavel">Navigation</div>
+                <div class="nav-item active">
+                    <a href="{{ path('home') }}">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Tableau de board</span>
+                    </a>
+                </div>
+                <div class="nav-item has-sub">
+                    <a href="javascript:void(0)">
+                        <i class="ik ik-package"></i>
+                        <span>Produits</span>
+                    </a>
+                    <div class="submenu-content">
+                        <a href="{{ path('product_new') }}" class="menu-item">
+                            Nouveau produit
+                        </a>
+                        <a href="{{ path('product_index') }}" class="menu-item">
+                            Liste produits
+                        </a>
+                    </div>
+                </div>
+                <div class="nav-lavel">Commandes</div>
+                <div class="nav-item has-sub">
+                    <a href="javascript:void(0)">
+                        <i class="fas fa-shopping-basket"></i>
+                        <span>Ventes clients</span> 
+                    </a>
+                    <div class="submenu-content">
+                        <a href="pages/client-orders.html" class="menu-item">
+                            Nouveau commande
+                        </a>
+                        <a href="pages/list-clientsales.html" class="menu-item">
+                            Liste commande
+                        </a>
+                        <a href="pages/list-clients.html" class="menu-item">
+                            Liste clients
+                        </a>
+                        <a href="#" class="menu-item">
+                            Créer clients
+                        </a>
+                    </div>
+                </div>
+                <div class="nav-item has-sub">
+                    <a href="javascript:void(0)">
+                        <i class="fas fa-shopping-basket"></i>
+                        <span>Achats fournisseurs</span> 
+                    </a>
+                    <div class="submenu-content">
+                        <a href="#" class="menu-item">
+                            Nouvelle commande
+                        </a>
+                        <a href="#" class="menu-item">
+                            Liste commande
+                        </a>
+                        <a href="#" class="menu-item">
+                            Liste fournisseurs
+                        </a>
+                        <a href="#" class="menu-item">
+                            Créer fournisseur
+                        </a>
+                    </div>
+                </div>
+                <div class="nav-lavel">Stocks</div>
+                <div class="nav-item has-sub">
+                    <a href="#"><i class="fas fa-barcode"></i>
+                        <span>Stocks</span>
+                    </a>
+                    <div class="submenu-content">
+                        <a href="#" class="menu-item">
+                            Ajustement des stocks
+                        </a> 
+                        <a href="#" class="menu-item">
+                            Déplacement
+                        </a>
+                        <a href="#" class="menu-item">
+                            Transfert
+                        </a>
+                    </div>
+                </div>
+                <div class="nav-item active">
+                    <a href="index.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Rapport</span>
+                    </a>
+                </div>
+                <div class="nav-item has-sub">
+                    <a href="#"><i class="fas fa-store"></i>
+                        <span>Sites/Emplacements</span>
+                    </a>
+                    <div class="submenu-content">
+                        <a href="#" class="menu-item">
+                            Créer emplacement
+                        </a> 
+                        <a href="#" class="menu-item">
+                            Liste emplacement
+                        </a>
+                        <a href="#" class="menu-item">
+                            Créer site
+                        </a>
+                        <a href="#" class="menu-item">
+                            liste sites
+                        </a>
+                    </div>
+                </div>
+                <div class="nav-item has-sub">
+                    <a href="#"><i class="fas fa-tags"></i>
+                        <span>Catégories/Tags</span>
+                    </a>
+                    <div class="submenu-content">
+                        <a href="#" class="menu-item">
+                            Catégories
+                        </a> 
+                        <a href="#" class="menu-item">
+                            Tags
+                        </a>
+                    </div>
+                </div> 
+            </nav>
+        </div>
+    </div>
+</div>

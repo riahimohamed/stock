@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %} Stock!{% endblock %}</title>
+
+        <link rel="icon" href="{{ asset('favicon.ico" type="image/x-icon') }}" />
+
+        <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
+        
+        <link rel="stylesheet" href="{{ asset('plugins/bootstrap/dist/css/bootstrap.min.css') }}">
+        
+        <link rel="stylesheet" href="{{ asset('plugins/ionicons/dist/css/ionicons.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('plugins/icon-kit/dist/css/iconkit.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}">
+        <link rel="stylesheet" href="{{ asset('dist/css/theme.css') }}">
+        <script src="{{ asset('') }}src/js/vendor/modernizr-2.8.3.min.js"></script>
+
+        <link rel="stylesheet" href="{{ asset('dist/css/style.css') }}">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+
+        <div class="auth-wrapper">
+            <div class="container-fluid h-100">
+                <div class="row flex-row h-100 bg-white">
+                    <div class="col-xl-8 col-lg-6 col-md-5 p-0 d-md-block d-lg-block d-sm-none d-none">
+                        <div class="lavalite-bg" style="background-image: url('../img/auth/register-bg.jpg')">
+                            <div class="lavalite-overlay"></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-7 my-auto p-0">
+                        <div class="authentication-form mx-auto">
+                            <div class="logo-centered">
+                                <a href="{{ path('home') }}">
+                                    <span class="h2">GS<i class="text-danger">.</i></span>
+                                </a>
+                            </div>
+
+                                {% block body %}{% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        
+        <script src="{{ asset('plugins/popper.js/dist/umd/popper.min.js') }}"></script>
+        <script src="{{ asset('plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js') }}"></script>
+        <script src="{{ asset('plugins/screenfull/dist/screenfull.js') }}"></script>
+        <script src="{{ asset('dist/js/theme.min.js') }}"></script>
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

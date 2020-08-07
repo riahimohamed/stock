@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Clients index{% endblock %}
+
+{% block body %}
+    <h1>Clients index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Location</th>
+                <th>Type</th>
+                <th>Priority</th>
+                <th>No_command</th>
+                <th>Type_delivery</th>
+                <th>Mode_pay</th>
+                <th>Qrcode</th>
+                <th>Percent_pay</th>
+                <th>Nb_pallet</th>
+                <th>Date_command</th>
+                <th>Date_prepar</th>
+                <th>Date_pay</th>
+                <th>Date_submit</th>
+                <th>Comment_command</th>
+                <th>Comment_delivery</th>
+                <th>Total_weight</th>
+                <th>Total_amount</th>
+                <th>Total_price</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td>{{ client.id }}</td>
+                <td>{{ client.location }}</td>
+                <td>{{ client.type }}</td>
+                <td>{{ client.priority }}</td>
+                <td>{{ client.noCommand }}</td>
+                <td>{{ client.typeDelivery }}</td>
+                <td>{{ client.modePay }}</td>
+                <td>{{ client.qrcode }}</td>
+                <td>{{ client.percentPay }}</td>
+                <td>{{ client.nbPallet }}</td>
+                <td>{{ client.dateCommand ? client.dateCommand|date('Y-m-d') : '' }}</td>
+                <td>{{ client.datePrepar ? client.datePrepar|date('Y-m-d') : '' }}</td>
+                <td>{{ client.datePay ? client.datePay|date('Y-m-d') : '' }}</td>
+                <td>{{ client.dateSubmit ? client.dateSubmit|date('Y-m-d') : '' }}</td>
+                <td>{{ client.commentCommand }}</td>
+                <td>{{ client.commentDelivery }}</td>
+                <td>{{ client.totalWeight }}</td>
+                <td>{{ client.totalAmount }}</td>
+                <td>{{ client.totalPrice }}</td>
+                <td>
+                    <a href="{{ path('clients_show', {'id': client.id}) }}">show</a>
+                    <a href="{{ path('clients_edit', {'id': client.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="20">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('clients_new') }}">Create new</a>
+{% endblock %}

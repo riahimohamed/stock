@@ -1,0 +1,301 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        new Chart(document.getElementById("line-chart"), {
+          type: 'line',
+          data: {
+            labels: [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050],
+            datasets: [{ 
+                data: [86,114,106,106,107,111,133,221,783,2478],
+                label: "Evolution de stock",
+                borderColor: "#3e95cd",
+                fill: false
+              }, { 
+                data: [282,350,411,502,635,809,947,1402,3700,5267],
+                label: "Achats",
+                borderColor: "#8e5ea2",
+                fill: false
+              }, { 
+                data: [168,170,178,190,203,276,408,547,675,734],
+                label: "Ventes",
+                borderColor: "#3cba9f",
+                fill: false
+              }, { 
+                data: [40,20,10,16,24,38,74,167,508,784],
+                label: "Merge Brute",
+                borderColor: "#e8c3b9",
+                fill: false
+              }
+            ]
+          },
+          options: {
+            title: {
+              display: false,
+              text: ''
+            }
+          }
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <!-- Commandes -->
+            <div class="col-md-4 col-xs-12">
+                <div class="card" >
+                    <div class="card-header">
+                        <h3>commande fournisseur</h3>
+                    </div>
+                    <div class="card-body feeds-widget">
+                        <div class="feed-item">
+                            <a href="#">
+                                <div class="feeds-left text-success">
+                                    <i class="far fa-check-circle"></i>
+                                </div>
+                                <div class="feeds-body">
+                                    <h4 class="title">
+                                        A valider
+                                    </h4>
+                                    <big>0</big>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="feed-item">
+                            <a href="#">
+                                <div class="feeds-left text-warning">
+                                    <i class="far fa-check-circle"></i>
+                                </div>
+                                <div class="feeds-body">
+                                    <h4 class="title">
+                                        A réceptionner
+                                    </h4>
+                                    <big>0</big>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="feed-item">
+                            <a href="#">
+                                <div class="feeds-left text-warning">
+                                    <i class="far fa-check-circle"></i>
+                                </div>
+                                <div class="feeds-body">
+                                    <h4 class="title">
+                                        Réception partielle
+                                    </h4>
+                                    <big>0</big>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Client -->
+                    <div class="col-md-12">
+                        <div class="widget">
+                            <div class="widget-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="state">
+                                        <h6>Fournisseurs</h6>
+                                        <h2>0</h2>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="far fa-user"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xs-12">
+                <div class="card table-card">
+                    <div class="card-header">
+                        <h3>Informations</h3>
+                    </div>
+                    <div class="card-block pb-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0 without-header">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <h3>0</h3>
+                                        </td>
+                                        <td>
+                                            <p>Produits</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h3>0</h3>
+                                        </td>
+                                        <td>
+                                            <p>Valeur du stock</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h3>0</h3></td>
+                                        <td>
+                                            <p>Sites
+                                        </td>
+                                    </tr>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xs-12">
+                <div class="card" >
+                    <div class="card-header">
+                        <h3>commande client</h3>
+                    </div>
+                    <div class="card-body feeds-widget">
+                        <div class="feed-item">
+                            <a href="#">
+                                <div class="feeds-left text-success">
+                                    <i class="far fa-check-circle"></i>
+                                </div>
+                                <div class="feeds-body">
+                                    <h4 class="title">
+                                        A valider
+                                    </h4>
+                                    <big>0</big>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="feed-item">
+                            <a href="#">
+                                <div class="feeds-left text-warning">
+                                    <i class="far fa-check-circle"></i>
+                                </div>
+                                <div class="feeds-body">
+                                    <h4 class="title">
+                                        A préparer
+                                    </h4>
+                                    <big>0</big>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="feed-item">
+                            <a href="#">
+                                <div class="feeds-left text-warning">
+                                    <i class="far fa-check-circle"></i>
+                                </div>
+                                <div class="feeds-body">
+                                    <h4 class="title">
+                                        Préparation partielle
+                                    </h4>
+                                    <big>0</big>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Client -->
+                    <div class="col-md-12">
+                        <div class="widget">
+                            <div class="widget-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="state">
+                                        <h6>Clients</h6>
+                                        <h2>0</h2>
+                                    </div>
+                                    <div class="icon">
+                                        <i class="far fa-user"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Commandes -->
+        </div>
+
+        <div class="row clearfix">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="widget bg-primary">
+                    <div class="widget-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="state">
+                                <h6>Works</h6>
+                                <h2>543</h2>
+                            </div>
+                            <div class="icon">
+                                <i class="ik ik-box"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="widget bg-success">
+                    <div class="widget-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="state">
+                                <h6>Sales</h6>
+                                <h2>3510</h2>
+                            </div>
+                            <div class="icon">
+                                <i class="ik ik-shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="widget bg-warning">
+                    <div class="widget-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="state">
+                                <h6>Earnings</h6>
+                                <h2>$43</h2>
+                            </div>
+                            <div class="icon">
+                                <i class="ik ik-inbox"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <div class="widget bg-danger">
+                    <div class="widget-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="state">
+                                <h6>New Users</h6>
+                                <h2>11</h2>
+                            </div>
+                            <div class="icon">
+                                <i class="ik ik-users"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card" style="min-height: 422px;">
+                    <div class="card-header"><h3>Reporting</h3></div>
+                    <div class="card-body">
+                       
+                        <canvas id="line-chart" width="800" height="300"></canvas> 
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+{% endblock %}

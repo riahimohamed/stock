@@ -1,0 +1,57 @@
+{% extends 'authentification.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+
+    <h3>New to ThemeKit</h3>
+    <p>Join us today! It takes only few steps</p>
+
+    {{ form_start(form) }}
+        <div class="form-group">
+            {{ form_widget(form.email, {'attr': { 'class': 'form-control', 'placeholder': 'Email' } }) }}
+            <i class="ik ik-user"></i>
+            <div class="text-danger">
+                {{ form_errors(form.email) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.username, {'attr': { 'class': 'form-control', 'placeholder': "Nom d'utilisateur" } }) }}
+            <i class="ik ik-user"></i>
+            <div class="text-danger">
+                {{ form_errors(form.username) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.password.first, {'attr': { 'class': 'form-control', 'placeholder': 'Mot de passe' } }) }}
+            <i class="ik ik-eye-off"></i>
+            <div class="text-danger">
+                {{ form_errors(form.password.first) }}
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_widget(form.password.second, {'attr': { 'class': 'form-control', 'placeholder': 'Confirme mot de passe' } }) }}
+            <i class="ik ik-eye-off"></i>
+            <div class="text-danger">
+                {{ form_errors(form.password.second) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-left">
+                <label class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="item_checkbox" name="item_checkbox" value="option1">
+                    <span class="custom-control-label">&nbsp;I Accept <a href="#">Terms and Conditions</a></span>
+                </label>
+            </div>
+        </div>
+        <div class="sign-btn text-center">
+            <button type="submit" class="btn btn-theme">Create Account</button>
+        </div>
+    {{ form_end(form) }}
+
+    <div class="register">
+        <p>Already have an account? <a href="{{ path('app_login') }}">Se connecter</a></p>
+    </div>
+                
+
+{% endblock %}
