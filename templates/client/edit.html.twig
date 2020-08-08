@@ -1,13 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Client{% endblock %}
+{% block title %}Modifier client{% endblock %}
 
 {% block body %}
-    <h1>Edit Client</h1>
 
-    {{ include('client/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="main-content">
+	    <div class="container"></div>
 
-    <a href="{{ path('client_index') }}">back to list</a>
+	    <div class="content-block">
+	        <div class="row">
+	            <div class="col-md-12">
+	                <div class="title">
+	                    <h1 class="h2 mt-0">
+	                        <i class="ik ik-user"></i> Ajouter client
+	                        <span class="text-muted h5">Données client</span>
+	                    </h1>
+	                </div>
+	            </div>
+	            
+	        </div>
+	    </div><!-- content-block -->
 
-    {{ include('client/_delete_form.html.twig') }}
+	    <!-- MultiStep Form -->
+	    <div class="container-fluid">
+	        <div class="cards">
+    		{{ include('client/_form.html.twig', {'button_label': 'Modifier'}) }}
+    		</div>
+    	</div>
+	</div>
+
 {% endblock %}

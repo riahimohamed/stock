@@ -65,12 +65,6 @@
                                                             <img src="{{asset('img/user_placeholder.jpg')}}" class="rounded-circle img-40 align-top mr-15">
                                                         {% endif %}
                                                         
-                                                        <div class="d-inline-block">
-                                                            <h6>{{ client.refProvider }}</h6>
-                                                            <p class="text-muted mb-0">
-                                                                {{ client.createdAt ? client.createdAt|date('Y-m-d') : '' }}
-                                                            </p>
-                                                        </div>
                                                     </div>
                                                 </td>
                                                 <td>{{ client.ref }}</td>
@@ -98,7 +92,6 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body">
-                                    <h4><i class="ik ik-tag"></i> {{ client.type_contact }}</h4>
                                     <p class="lead">
                                         {{ client.ref }} - {{ client.createdAt ? client.createdAt|date('Y-m-d') : '' }}
                                     </p>
@@ -115,7 +108,7 @@
                                     <div class="col-md-12">
                                         <div class="card latest-update-card">
                                             <div class="card-header">
-                                                <h3>{{ client.ref }} </h3>
+                                                <h3>Réferance : {{ client.ref }} </h3>
                                                 
                                             </div>
                                             <div class="card-block">
@@ -126,8 +119,8 @@
                                                                 <i class="b-primary update-icon ring"></i>
                                                             </div>
                                                             <div class="col pl-5">
-                                                                <h6>Fixe</h6>
-                                                                <p class="text-muted mb-0">{{ client.fixe }}</p>
+                                                                <h6>Nom de compte</h6>
+                                                                <p class="text-muted mb-0">{{ client.accountName }}</p>
                                                             </div>
                                                         </div>
                                                         <div class="row pb-30">
@@ -135,8 +128,8 @@
                                                                 <i class="b-primary update-icon ring"></i>
                                                             </div>
                                                             <div class="col pl-5">
-                                                                <h6>Fax</h6>
-                                                                <p class="text-muted mb-0">{{ client.fax }}</p>
+                                                                <h6>type de contact</h6>
+                                                                <p class="text-muted mb-0">{{ client.typeContact }}</p>
                                                             </div>
                                                         </div>
                                                         <div class="row pb-30">
@@ -144,8 +137,32 @@
                                                                 <i class="b-success update-icon ring"></i>
                                                             </div>
                                                             <div class="col pl-5">
-                                                                <h6>Nom de compte</h6>
-                                                                <p class="text-muted mb-0">{{ client.account_name }}</p>
+                                                                <h6>Mobile</h6>
+                                                                <p class="text-muted mb-0">
+                                                                    {{ client.mobile }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row pb-30">
+                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                <i class="b-success update-icon ring"></i>
+                                                            </div>
+                                                            <div class="col pl-5">
+                                                                <h6>Fix</h6>
+                                                                <p class="text-muted mb-0">
+                                                                    {{ client.fixe }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row pb-30">
+                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                <i class="b-success update-icon ring"></i>
+                                                            </div>
+                                                            <div class="col pl-5">
+                                                                <h6>Email</h6>
+                                                                <p class="text-muted mb-0">
+                                                                    {{ client.email }}
+                                                                </p>
                                                             </div>
                                                         </div>
                                                     </div>
