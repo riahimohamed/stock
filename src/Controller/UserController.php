@@ -28,7 +28,7 @@ class UserController extends AbstractController
 
         if($form->isSubmitted() && $form->isValid()){
 
-            $hash = $this->encoder->encodePassword( $user , $user->getPassword());
+            $hash = $encoder->encodePassword( $user , $user->getPassword());
             $user->setPassword($hash);
             $user->setRoles(['ROLE_USER']);
 

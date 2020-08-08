@@ -70,17 +70,17 @@ class Product
     private $unit;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $color;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $weight;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="float", nullable=true)
      */
     private $size;
 
@@ -91,23 +91,14 @@ class Product
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @var string|null
      */
     private $image;
 
     /**
-     * @Assert\Image(
-     *     minWidth = 200,
-     *     maxWidth = 400,
-     *     minHeight = 200,
-     *     maxHeight = 400,
-     *     mimeTypes = {
-     *       "image/png",
-     *          "image/jpeg",
-     *          "image/jpg"
-     *     }
-     * )
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
      */
-    protected $imageFile;
+    private $category;
 
     public function getId(): ?int
     {
@@ -294,8 +285,20 @@ class Product
         return $this;
     }
 
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
     public function __toString(){
-        return $this->image;
+        return $this->category;
     }
 
 }

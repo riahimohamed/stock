@@ -75,7 +75,12 @@
                                         <tr>
                                             <td>
                                                 <div class="d-inline-block align-middle">
-                                                    <img src="{{ asset('uploads/products/'~ product.image) }}" alt="user image" class="rounded-circle img-40 align-top mr-15">
+                                                    {% if product.image %}
+                                                      <img src="{{ asset('uploads/products/'~ product.image) }}" alt="user image" class="rounded-circle img-40 align-top mr-15">
+                                                    {% else %}
+                                                        <img src="{{asset('img/placeholder.png')}}" class="rounded-circle img-40 align-top mr-15">
+                                                    {% endif %}
+                                                    
                                                     <div class="d-inline-block">
                                                         <h6>{{ product.refProvider }}</h6>
                                                         <p class="text-muted mb-0">
@@ -91,7 +96,7 @@
                                             <td>{{ product.price }}</td>
                                             <td>{{ product.unit }}</td>
                                             <td>
-                                                <a href="#editLayoutItem" data-toggle="modal" data-target="#editLayoutItem">
+                                                <a href="#edit-{{ loop.index }}" data-toggle="modal" data-target="#edit-{{ loop.index }}">
                                                     <i class="ik ik-eye f-16 mr-15 text-green"></i>
                                                 </a>
                                                 <a href="{{ path('product_edit', {'id': product.id}) }}">
@@ -99,111 +104,118 @@
                                                 </a>
                                             </td>
                                         </tr>
-
-                                        <div class="modal fade edit-layout-modal" id="editLayoutItem" tabindex="-1" role="dialog" aria-labelledby="editLayoutItemLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="editLayoutItemLabel">
-                                                        {{ product.label }}
-                                                    </h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p class="lead">
-                                                        {{ product.qrcode }} {{ product.createdAt ? product.createdAt|date('Y-m-d H:i:s') : '' }}
-                                                    </p>
-                                                    <p>{{ product.description }}</p>
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <img src="{{ asset('uploads/products/' ~ product.image) }}" class="img-fluid" alt="">
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div class="col-md-12">
-                                                        <div class="card latest-update-card">
-                                                            <div class="card-header">
-                                                                <h3>{{ product.ref }} {{ product.refprovider }}</h3>
-                                                                
+                    <!-- Modal -->
+                    <div class="modal fade edit-layout-modal" id="edit-{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="editLayoutItemLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editLayoutItemLabel">
+                                        {{ product.label }}
+                                    
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h4><i class="ik ik-tag"></i> {{ product.category }}</h4>
+                                    <p class="lead">
+                                        {{ product.qrcode }} - {{ product.createdAt ? product.createdAt|date('Y-m-d') : '' }}
+                                    </p>
+                                    <p>{{ product.description }}</p>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <img src="{{ asset('uploads/products/'~ product.image) }}" class="img-fluid" alt="">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-12">
+                                        <div class="card latest-update-card">
+                                            <div class="card-header">
+                                                <h3>{{ product.ref }} {{ product.refprovider }}</h3>
+                                                
+                                            </div>
+                                            <div class="card-block">
+                                                <div class="scroll-widget">
+                                                    <div class="latest-update-box">
+                                                        <div class="row pt-20 pb-30">
+                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                <i class="b-primary update-icon ring"></i>
                                                             </div>
-                                                            <div class="card-block">
-                                                                <div class="scroll-widget">
-                                                                    <div class="latest-update-box">
-                                                                        <div class="row pt-20 pb-30">
-                                                                            <div class="col-auto text-right update-meta pr-0">
-                                                                                <i class="b-primary update-icon ring"></i>
-                                                                            </div>
-                                                                            <div class="col pl-5">
-                                                                                <h6>Fabricant</h6>
-                                                                                <p class="text-muted mb-0">{{ product.maker }}</p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row pb-30">
-                                                                            <div class="col-auto text-right update-meta pr-0">
-                                                                                <i class="b-primary update-icon ring"></i>
-                                                                            </div>
-                                                                            <div class="col pl-5">
-                                                                                <h6>Ref Fabricant</h6>
-                                                                                <p class="text-muted mb-0">{{ product.refmaker }}</p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row pb-30">
-                                                                            <div class="col-auto text-right update-meta pr-0">
-                                                                                <i class="b-success update-icon ring"></i>
-                                                                            </div>
-                                                                            <div class="col pl-5">
-                                                                                <h6>Prix</h6>
-                                                                                <p class="text-muted mb-0">{{ product.price }}</p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row pb-30">
-                                                                            <div class="col-auto text-right update-meta pr-0">
-                                                                                <i class="b-primary update-icon ring"></i>
-                                                                            </div>
-                                                                            
-                                                                            <div class="col pl-5">
-                                                                                <h6>Unité</h6>
-                                                                                <p class="text-muted mb-0">{{ product.unit }}</p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row pb-30">
-                                                                            <div class="col-auto text-right update-meta pr-0">
-                                                                                <i class="b-success update-icon ring"></i>
-                                                                            </div>
-                                                                            <div class="col pl-5">
-                                                                                <h6>Dangereux</h6>
-                                                                                <p class="text-muted mb-0">
-                                                                                {% if product.danger == 1 %}
-                                                                                    Oui
-                                                                                {% else %}
-                                                                                    Non
-                                                                                {% endif %}        
-                                                                                </p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row">
-                                                                            <div class="col-auto text-right update-meta pr-0">
-                                                                                <i class="b-danger update-icon ring"></i>
-                                                                            </div>
-                                                                            <div class="col pl-5">
-                                                                                <h6>Couleur</h6>
-                                                                                <p class="text-muted mb-0">{{ product.color }}</p>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                            <div class="col pl-5">
+                                                                <h6>Fabricant</h6>
+                                                                <p class="text-muted mb-0">{{ product.maker }}</p>
                                                             </div>
                                                         </div>
+                                                        <div class="row pb-30">
+                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                <i class="b-primary update-icon ring"></i>
+                                                            </div>
+                                                            <div class="col pl-5">
+                                                                <h6>Ref Fabricant</h6>
+                                                                <p class="text-muted mb-0">{{ product.refmaker }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row pb-30">
+                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                <i class="b-success update-icon ring"></i>
+                                                            </div>
+                                                            <div class="col pl-5">
+                                                                <h6>Prix</h6>
+                                                                <p class="text-muted mb-0">{{ product.price }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row pb-30">
+                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                <i class="b-primary update-icon ring"></i>
+                                                            </div>
+                                                            
+                                                            <div class="col pl-5">
+                                                                <h6>Unité</h6>
+                                                                <p class="text-muted mb-0">{{ product.unit }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row pb-30">
+                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                <i class="b-success update-icon ring"></i>
+                                                            </div>
+                                                            <div class="col pl-5">
+                                                                <h6>Dangereux</h6>
+                                                                <p class="text-muted mb-0">
+                                                                {% if product.danger == 1 %}
+                                                                    Oui
+                                                                {% else %}
+                                                                    Non
+                                                                {% endif %}        
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                <i class="b-danger update-icon ring"></i>
+                                                            </div>
+                                                            <div class="col pl-5">
+                                                                <h6>Couleur</h6>
+                                                                {% if product.color %}
+                                                                <p class="text-muted mb-0"> {{ product.color }}
+                                                                </p>
+                                                                {% else %}
+                                                                    -
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <a href="layout-edit-item.html" class="btn btn-primary">Edit</a>
-                                                    <button type="button" class="btn btn-danger list-delete">Delete</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                    {{ include('product/_delete_form.html.twig') }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Modal -->
 
                                     {% else %}
                                         <tr>

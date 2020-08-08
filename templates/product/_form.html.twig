@@ -87,13 +87,15 @@
 
                             <div class="pt-4">
                                 <div class="input-group input-group-lg mb-3">
+                                  
                                   <div class="input-group-prepend">
-                                    <label class="input-group-text" for="cat">CATÉGORIE</label>
+                                    <label class="input-group-text" for="category">
+                                      CATÉGORIE
+                                    </label>
                                   </div>
-                                  <select class="form-control custom-select" id="cat">
-                                    <option>Catégorie</option>
-                                    <option selected>Aucun résultat trouvé</option>
-                                  </select>
+
+                                  {{ form_widget(form.category, {'attr': {'class': 'form-control custom-select'}}) }}
+
                                 </div>
                                 <div class="input-group input-group-lg mb-3">
                                   <div class="input-group-prepend">
@@ -144,11 +146,18 @@
                             {{ form_label(form.price, 'Prix') }}
                             {{ form_widget(form.price, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Prix'}}) }}
                         </div>
+                        <div class="form-error">
+                            {{ form_errors(form.price) }}
+                        </div>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         {{ form_label(form.unit, 'Unité') }}
                         {{ form_widget(form.unit, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Unité'}}) }}
                     </div>
+                    <div class="form-error">
+                            {{ form_errors(form.unit) }}
+                        </div>
+
                   </div>
                   
                   <div class="row">
@@ -157,18 +166,29 @@
                           {{ form_label(form.color, 'Couleur') }}
                           {{ form_widget(form.color, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Couleur'}}) }}
                         </div>
+                        <div class="form-error">
+                            {{ form_errors(form.color) }}
+                        </div>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                           {{ form_label(form.weight, 'Poinds') }}
                           {{ form_widget(form.weight, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Poinds'}}) }}
                         </div>
+                        <div class="form-error">
+                            {{ form_errors(form.weight) }}
+                        </div>
+
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <div class="form-group">
                           {{ form_label(form.size, 'Taille') }}
                           {{ form_widget(form.size, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Taille'}}) }}
                         </div>
+                        <div class="form-error">
+                            {{ form_errors(form.size) }}
+                        </div>
+
                     </div>
                   </div >
             </div><!-- section-prix -->

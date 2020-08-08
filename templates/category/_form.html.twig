@@ -1,0 +1,17 @@
+{{ form_start(form) }}
+    <div class="row d-flex">
+        <div class="col-md-10">
+            <div class="form-group">
+                {{ form_widget(form.name, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Editer catégorie'}}) }}
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group">
+                
+                <button class="btn btn-warning btn-lg btn-block">
+                    {{ button_label|default('Créer') }}
+                </button>
+            </div>
+        </div>
+    </div>
+{{ form_end(form) }}

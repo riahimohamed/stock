@@ -4,21 +4,17 @@
         <meta charset="UTF-8">
         <title>{% block title %} Stock!{% endblock %}</title>
 
-        <link rel="icon" href="{{ asset('favicon.ico" type="image/x-icon') }}" />
+        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon" />
 
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
-        
         <link rel="stylesheet" href="{{ asset('plugins/bootstrap/dist/css/bootstrap.min.css') }}">
-        
         <link rel="stylesheet" href="{{ asset('plugins/ionicons/dist/css/ionicons.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('plugins/icon-kit/dist/css/iconkit.min.css') }}">
         <link rel="stylesheet" href="{{ asset('plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}">
-        <link rel="stylesheet" href="{{ asset('plugins/c3/c3.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('dist/css/theme.css') }}">
-        <script src="{{ asset('') }}src/js/vendor/modernizr-2.8.3.min.js"></script>
-
+        <link rel="stylesheet" href="{{ asset('plugins/icon-kit/dist/css/iconkit.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('dist/css/theme.css') }}"> 
         <link rel="stylesheet" href="{{ asset('dist/css/style.css') }}">
-
+        
+        <script src="{{ asset('src/js/vendor/modernizr-2.8.3.min.js') }}"></script>
         <script src="https://kit.fontawesome.com/a653e87b55.js" crossorigin="anonymous">
         </script>
         {% block stylesheets %}{% endblock %}
@@ -36,16 +32,12 @@
         
         <script src="{{ asset('plugins/popper.js/dist/umd/popper.min.js') }}"></script>
         <script src="{{ asset('plugins/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-        <script src="{{ asset('plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js') }}"></script>
+        <script src="{{ asset('plugins/perfect-scrollbar/dist/perfect-scrollbar.min.js') }}"></script> 
         <script src="{{ asset('plugins/screenfull/dist/screenfull.js') }}"></script>
-        <script src="{{ asset('plugins/datatables.net/js/jquery.dataTables.min.js') }}"></script>
-        <script src="{{ asset('plugins/datatables.net-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-        <script src="{{ asset('plugins/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
         <script src="{{ asset('plugins/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js') }}"></script>
         <script src="{{ asset('plugins/moment/moment.js') }}"></script>
         <script src="{{ asset('plugins/tempusdominus-bootstrap-4/build/js/tempusdominus-bootstrap-4.min.js') }}"></script>
-        <script src="{{ asset('plugins/d3/dist/d3.min.js') }}"></script>
-        <script src="{{ asset('plugins/c3/c3.min.js') }}"></script>
+
         <script src="{{ asset('js/tables.js') }}"></script>
         <script src="{{ asset('js/widgets.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>

@@ -44,16 +44,16 @@
                         <span>Ventes clients</span> 
                     </a>
                     <div class="submenu-content">
-                        <a href="pages/client-orders.html" class="menu-item">
+                        <a href="#" class="menu-item">
                             Nouveau commande
                         </a>
-                        <a href="pages/list-clientsales.html" class="menu-item">
+                        <a href="#" class="menu-item">
                             Liste commande
                         </a>
-                        <a href="pages/list-clients.html" class="menu-item">
+                        <a href="{{ path('client_index') }}" class="menu-item">
                             Liste clients
                         </a>
-                        <a href="#" class="menu-item">
+                        <a href="{{ path('client_new') }}" class="menu-item">
                             Créer clients
                         </a>
                     </div>
@@ -125,11 +125,8 @@
                         <span>Catégories/Tags</span>
                     </a>
                     <div class="submenu-content">
-                        <a href="#" class="menu-item">
+                        <a href="{{ path('category_index') }}" class="menu-item">
                             Catégories
-                        </a> 
-                        <a href="#" class="menu-item">
-                            Tags
                         </a>
                     </div>
                 </div> 

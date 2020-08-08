@@ -2,40 +2,37 @@
 
 namespace App\Controller;
 
-use App\Entity\Product;
-use App\Form\ProductType;
-
-use App\Repository\ProductRepository;
+use App\Entity\Client;
+use App\Form\ClientType;
+use App\Repository\ClientRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-
 /**
- * @Route("/product")
+ * @Route("/client")
  */
-class ProductController extends AbstractController
+class ClientController extends AbstractController
 {
     /**
-     * @Route("/", name="product_index", methods={"GET"})
+     * @Route("/", name="client_index", methods={"GET"})
      */
-    public function index(ProductRepository $productRepository): Response
+    public function index(ClientRepository $clientRepository): Response
     {
-        return $this->render('product/index.html.twig', [
-            'products' => $productRepository->findAll(),
+        return $this->render('client/index.html.twig', [
+            'clients' => $clientRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="product_new", methods={"GET","POST"})
+     * @Route("/new", name="client_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
-        $product = new Product();
+        $client = new Client();
 
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -53,7 +50,7 @@ class ProductController extends AbstractController
                 // Move the file to the directory where brochures are stored
                 try {
                     $imageFile->move(
-                        $this->getParameter('product_directory'),
+                        $this->getParameter('client_directory'),
                         $newFilename
                     );
                 } catch (FileException $e) {
@@ -62,65 +59,65 @@ class ProductController extends AbstractController
 
                 // updates the 'imageFilename' property to store the image file name
                 // instead of its contents
-                $product->setImage($newFilename);
+                $client->setImage($newFilename);
             }
 
-            $product->setCreatedAt(new \DateTime());
+            $client->setCreatedAt(new \DateTime());
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($product);
+            $entityManager->persist($client);
             $entityManager->flush();
 
-            return $this->redirectToRoute('product_index');
+            return $this->redirectToRoute('client_index');
         }
 
-        return $this->render('product/new.html.twig', [
-            'product' => $product,
+        return $this->render('client/new.html.twig', [
+            'client' => $client,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="product_show", methods={"GET"})
+     * @Route("/{id}", name="client_show", methods={"GET"})
      */
-    public function show(Product $product): Response
+    public function show(Client $client): Response
     {
-        return $this->render('product/show.html.twig', [
-            'product' => $product,
+        return $this->render('client/show.html.twig', [
+            'client' => $client,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="product_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="client_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Product $product): Response
+    public function edit(Request $request, Client $client): Response
     {
-        $form = $this->createForm(ProductType::class, $product);
+        $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('product_index');
+            return $this->redirectToRoute('client_index');
         }
 
-        return $this->render('product/edit.html.twig', [
-            'product' => $product,
+        return $this->render('client/edit.html.twig', [
+            'client' => $client,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="product_delete", methods={"DELETE"})
+     * @Route("/{id}", name="client_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Product $product): Response
+    public function delete(Request $request, Client $client): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$client->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($product);
+            $entityManager->remove($client);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('product_index');
+        return $this->redirectToRoute('client_index');
     }
 }

@@ -34,11 +34,13 @@
     </div>
 </form>
 
-<div class="register">
-    <p>
-        Je n'ai pas de compte? 
-        <a href="{{ path('security_register') }}">Inscriiption</a>
-    </p>
-</div>
+{% if app.user %}
+    <div class="register">
+        <p>
+            Je n'ai pas de compte? 
+            <a href="{{ path('security_register') }}">Inscriiption</a>
+        </p>
+    </div>
+{% endif %}
 
 {% endblock %}
