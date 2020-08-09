@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter commande{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('dist/js/script.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+	<div class="main-content">
+	    <div class="container"></div>
+
+	    <div class="content-block">
+	        <div class="row">
+	            <div class="col-md-12">
+	                <div class="title">
+	                    <h1 class="h2 mt-0">
+	                        <i class="ik ik-shopping-bag"></i> Commandes clients
+	                    </h1>
+	                </div>
+	            </div>
+	            
+	        </div>
+	    </div><!-- content-block -->
+
+	    <!-- MultiStep Form -->
+	    <div class="container-fluid">
+	        <div class="cards">
+    			{{ include('command_client/_form.html.twig') }}
+    		</div>
+    	</div>    
+	</div>
+
+{% endblock %}

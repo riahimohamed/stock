@@ -44,10 +44,10 @@
                         <span>Ventes clients</span> 
                     </a>
                     <div class="submenu-content">
-                        <a href="#" class="menu-item">
+                        <a href="{{ path('command_client_new') }}" class="menu-item">
                             Nouveau commande
                         </a>
-                        <a href="#" class="menu-item">
+                        <a href="{{ path('command_client_index') }}" class="menu-item">
                             Liste commande
                         </a>
                         <a href="{{ path('client_index') }}" class="menu-item">
@@ -103,26 +103,20 @@
                 </div>
                 <div class="nav-item has-sub">
                     <a href="#"><i class="fas fa-store"></i>
-                        <span>Sites/Emplacements</span>
+                        <span>Emplacements</span>
                     </a>
                     <div class="submenu-content">
-                        <a href="#" class="menu-item">
+                        <a href="{{ path('location_new') }}" class="menu-item">
                             Créer emplacement
                         </a> 
-                        <a href="#" class="menu-item">
+                        <a href="{{ path('location_index') }}" class="menu-item">
                             Liste emplacement
-                        </a>
-                        <a href="#" class="menu-item">
-                            Créer site
-                        </a>
-                        <a href="#" class="menu-item">
-                            liste sites
                         </a>
                     </div>
                 </div>
                 <div class="nav-item has-sub">
                     <a href="#"><i class="fas fa-tags"></i>
-                        <span>Catégories/Tags</span>
+                        <span>Catégories</span>
                     </a>
                     <div class="submenu-content">
                         <a href="{{ path('category_index') }}" class="menu-item">

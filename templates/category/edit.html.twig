@@ -5,31 +5,31 @@
 {% block body %}
 
     <div class="main-content">
-    <div class="container">
+        <div class="container">
 
-        <div class="content-block">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="title">
-                        <h1 class="h2 mt-0">
-                            <i class="ik ik-tag "></i> Modifier catégories
-                            <span class="float-right">
-                                <a href="{{ path('category_index') }}">
-                                    <i class="ik ik-arrow-left-circle"></i>
-                                </a>
-                            </span>
-                        </h1>
-                        
+            <div class="content-block">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title">
+                            <h1 class="h2 mt-0">
+                                <i class="ik ik-tag "></i> Modifier catégories
+                                <span class="float-right">
+                                    <a href="{{ path('category_index') }}">
+                                        <i class="ik ik-arrow-left-circle"></i>
+                                    </a>
+                                </span>
+                            </h1>
+                            
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-12 pt-4">
-                {{ include('category/_form.html.twig', {'button_label': 'Modifier'}) }}
-            </div>
-        </div><!-- content-block -->
+                <div class="col-md-12 pt-4">
+                    {{ include('category/_form.html.twig', {'button_label': 'Modifier'}) }}
+                </div>
+            </div><!-- content-block -->
 
+        </div>
     </div>
-</div>
 
     {{ include('category/_delete_form.html.twig') }}
 {% endblock %}

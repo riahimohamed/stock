@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CommandClient{% endblock %}
+
+{% block body %}
+    <h1>CommandClient</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ command_client.id }}</td>
+            </tr>
+            <tr>
+                <th>Locale</th>
+                <td>{{ command_client.locale }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ command_client.type }}</td>
+            </tr>
+            <tr>
+                <th>Priority</th>
+                <td>{{ command_client.priority }}</td>
+            </tr>
+            <tr>
+                <th>Nocmd</th>
+                <td>{{ command_client.nocmd }}</td>
+            </tr>
+            <tr>
+                <th>TypeDelivery</th>
+                <td>{{ command_client.typeDelivery }}</td>
+            </tr>
+            <tr>
+                <th>ModePay</th>
+                <td>{{ command_client.modePay }}</td>
+            </tr>
+            <tr>
+                <th>PercentPay</th>
+                <td>{{ command_client.percentPay }}</td>
+            </tr>
+            <tr>
+                <th>DateCmd</th>
+                <td>{{ command_client.dateCmd ? command_client.dateCmd|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DatePreparation</th>
+                <td>{{ command_client.datePreparation ? command_client.datePreparation|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DatePay</th>
+                <td>{{ command_client.datePay ? command_client.datePay|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateSumit</th>
+                <td>{{ command_client.dateSumit ? command_client.dateSumit|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CommentCmd</th>
+                <td>{{ command_client.commentCmd }}</td>
+            </tr>
+            <tr>
+                <th>CommentDelivery</th>
+                <td>{{ command_client.commentDelivery }}</td>
+            </tr>
+            <tr>
+                <th>TotalWeight</th>
+                <td>{{ command_client.totalWeight }}</td>
+            </tr>
+            <tr>
+                <th>TotalAmount</th>
+                <td>{{ command_client.totalAmount }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('command_client_index') }}">back to list</a>
+
+    <a href="{{ path('command_client_edit', {'id': command_client.id}) }}">edit</a>
+
+    {{ include('command_client/_delete_form.html.twig') }}
+{% endblock %}

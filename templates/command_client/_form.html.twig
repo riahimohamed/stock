@@ -1,0 +1,195 @@
+<form action="{{ path('command_client_new') }}" method="post" id="msform" novalidate>
+
+    <!-- progressbar -->
+    <ul id="progressbar">
+        <li class="active" id="account"><strong>Nouveau</strong></li>
+        <li id="personal"><strong>Préparation en cours</strong></li>
+        <li id="payment"><strong>Partiellement préparé</strong></li>
+        <li id="confirm"><strong>Terminé</strong></li>
+    </ul> <!-- fieldsets -->
+    <fieldset>
+        <div class="content">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+				  {{ form_label(form.locale, 'Emplacement') }}
+                  {{ form_widget(form.locale, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Emplacement'}}) }}
+                </div>
+                <div class="form-group col-md-4">
+                  {{ form_label(form.type, 'Client/Projet') }}
+                  {{ form_widget(form.type, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Client/Projet'}}) }}
+                </div>
+                <div class="form-group col-md-4">
+                  {{ form_label(form.priority, 'Priorité') }}
+                  {{ form_widget(form.priority, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Priorité'}}) }}
+                </div>
+            </div>
+        </div>
+        <div class="content">    
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  {{ form_label(form.nocmd, 'N° commande') }}
+                  {{ form_widget(form.nocmd, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'N° commande'}}) }}
+                </div>
+				
+				<div class="form-group col-md-6">
+                  {{ form_label(form.typeDelivery, 'Type de livraison') }}
+                  {{ form_widget(form.typeDelivery, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Type de livraison'}}) }}
+                </div>
+
+                <div class="form-group col-md-6 mt-3">  
+	              <div class="input-group input-group-lg">
+	                  <div class="input-group-prepend">
+	                    
+	                    <label class="input-group-text" for="cat">PAIEMENT</label>
+	                  </div>
+	                  
+	              	  {{ form_widget(form.modePay, {'attr': {'class': 'form-control custom-select', 'placeholder': 'Type de livraison'}}) }}
+	              </div>
+
+	            </div>
+            </div>
+        </div><!-- content -->
+
+        <input type="button" class="btn btn-warning btn-lg next action-button float-right mt-3" value="Commander" /> 
+        
+    </fieldset>
+    <fieldset>
+        <div class="content border">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        {{ form_label(form.percentPay, 'Pourcentage paiement') }}
+                  		{{ form_widget(form.percentPay, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Pourcentage paiement'}}) }}
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-6 form-group">
+                            {{ form_label(form.dateCmd, 'Date de commande') }}
+                  			{{ form_widget(form.dateCmd, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Date de commande'}}) }}
+                        </div>
+                        <div class="col-6 form-group">
+                            {{ form_label(form.datePay, 'Date de paiement') }}
+                  			{{ form_widget(form.datePay, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Date de paiement'}}) }}
+                        </div>
+                        <div class="col-6 form-group">
+                            {{ form_label(form.datePreparation, 'Date de préparation<') }}
+                  			{{ form_widget(form.datePreparation, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Date de préparation<'}}) }}
+                        </div>
+                        <div class="col-6 form-group">
+                            {{ form_label(form.dateSumit, 'Date envoi') }}
+                  			{{ form_widget(form.dateSumit, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Date envoi'}}) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.commentCmd, 'Commentaire commande') }}
+                {{ form_widget(form.commentCmd, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Commentaire commande'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.commentDelivery, 'Commentaire livraison') }}
+                {{ form_widget(form.commentDelivery, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Commentaire livraison'}}) }}
+            </div>
+        </div>
+
+        <input type="button" name="next" class="next action-button btn btn-warning btn-lg float-right mt-3" value="Suivant" />
+
+        <input type="button" name="previous" class="previous action-button-previous btn btn-warning btn-lg float-right mt-3 mr-3" value="Précédent" />
+    </fieldset>
+    <fieldset>
+        
+        <div class="content pb-4">
+            <div class="row">
+                <div class="col-md-12 table-responsive">
+                    <table class="table table-bordered" id="tab_logic">
+                        <thead>
+                            <tr >
+                                <th>
+                                    Code
+                                </th>
+                                <th>
+                                    Nom
+                                </th>
+                                <th>
+                                    PRIX UNITAIRE
+                                </th>
+                                <th>
+                                    QTÉ COMMANDÉE
+                                </th>
+                                <th>
+                                    Supp
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id='addr0' data-id="0" class="hidden">
+                                <td data-name="name">
+                                    <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Code">
+                                </div>
+                                </td>
+                                <td data-name="mail">
+                                    <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Nom">
+                                </td>
+                                <td data-name="desc">
+                                    <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="PRIX UNITAIRE">
+                                </td>
+                                <td data-name="sel">
+                                    <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="QTÉ COMMANDÉE">
+                                </td>
+                                <td data-name="del">
+                                    <button name="del0" class='btn btn-danger glyphicon glyphicon-remove row-remove'><span aria-hidden="true">×</span></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="text-right my-3">
+                    <a id="add_row" class="btn btn-outline-success btn-lg float-right">
+                    Ajouter
+                    </a>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="form-group mr-2">
+                    {{ form_label(form.totalWeight, 'Poids total') }}
+                	{{ form_widget(form.totalWeight, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Poids total'}}) }}
+                </div>
+                <div class="form-group mr-2">
+                    {{ form_label(form.totalAmount, 'Qté total') }}
+                	{{ form_widget(form.totalAmount, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Qté total'}}) }}
+                </div>
+                <div class="form-group mr-2">
+                    {{ form_label(form.totalPrice, 'Prix total') }}
+                	{{ form_widget(form.totalPrice, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Prix total'}}) }}
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class=" btn btn-warning btn-lg float-right mt-3 mr-3">
+        	{{ button_label|default('Valier') }}
+        </button>
+
+        <input type="button" name="previous" class="previous action-button-previous btn btn-warning btn-lg float-right mt-3 mr-3" value="Précédent" /> 
+
+    </fieldset>
+    <fieldset>
+        <div class="form-card">
+            <div class="row justify-content-center">
+                <div class="col-3"> <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image"> </div>
+            </div> <br><br>
+            <div class="row justify-content-center">
+                <div class="col-7 text-center">
+                    <h5>Votre commande enregistrer avec succés</h5>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+{{ form_end(form) }}

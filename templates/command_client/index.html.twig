@@ -1,0 +1,208 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des commandes{% endblock %}
+
+{% block body %}
+
+    <div class="main-content">
+        <div class="container">
+
+            <div class="content-block">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="title">
+                            <h1 class="h2 mt-0">
+                                <i class="ik ik-package"></i> Liste des commandes clients
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Recherche" required="">
+                                <i class="ik ik-user"></i>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div><!-- content-block -->
+
+            <div class="dashed-block my-4">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="title">
+                            <h2 class="text-muted">
+                                Créez votre première commande client
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <a href="{{ path('command_client_new') }}" class="btn btn-warning btn-lg">
+                            Démarrer
+                        </a>
+                    </div>
+                </div>
+            </div><!-- content -->
+
+            <div class="table-block my-5">
+                <div class="col-md-12">
+                    <div class="card table-card">
+                        <div class="card-header">
+                            <h3>Commandes</h3>
+                            <div class="card-header-right">
+                                <ul class="list-unstyled card-option">
+                                    <li><i class="ik ik-chevron-left action-toggle"></i></li>
+                                    <li><i class="ik ik-minus minimize-card"></i></li>
+                                    <li><i class="ik ik-x close-card"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-block">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Priorité</th>
+                                            <th>Date creation</th>
+                                            <th>Emplacement</th>
+                                            <th>N° commande</th>
+                                            <th>Type de livraison</th>
+                                            <th>Prix total</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for command_client in command_clients %}
+                                        <tr>
+                                            <td>{{ command_client.priority }}</td>
+                                            <td>
+                                                {{ command_client.createdAt ? command_client.createdAt|date('Y-m-d') : '' }}
+                                            </td>
+                                            <td>{{ command_client.locale }}</td>
+                                            <td>{{ command_client.commentCmd }}</td>
+                                            <td>{{ command_client.typeDelivery }}</td>
+                                            <td>{{ command_client.totalPrice }}</td>
+                                            <td>
+                                                <a href="#show-{{ loop.index }}" data-toggle="modal" data-target="#show-{{ loop.index }}">
+                                                    <i class="ik ik-eye f-16 mr-15 text-green"></i>
+                                                </a>
+                                                <a href="{{ path('command_client_edit', {'id': command_client.id}) }}">
+                                                    <i class="ik ik-edit f-16 text-green"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                    <!-- Modal -->
+                    <div class="modal fade edit-layout-modal" id="show-{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="editLayoutItemLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editLayoutItemLabel">
+                                        {{ command_client.nocmd }}
+                                    
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <h4><i class="ik ik-tag"></i> {{ command_client.type }}</h4>
+                                    <p class="lead">
+                                        {{ command_client.typeDelivery }} - {{ command_client.createdAt ? command_client.createdAt|date('Y-m-d') : '' }}
+                                    </p>
+                                    
+                                    <div class="col-md-12">
+                                        <div class="card latest-update-card">
+                                            <div class="card-header">
+                                                <h3>{{ command_client.modePay }} {{ command_client.percentPay }}</h3>
+                                                
+                                            </div>
+                                            <div class="card-block">
+                                                <div class="scroll-widget">
+                                                    <div class="latest-update-box">
+                                                        <div class="row pt-20 pb-30">
+                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                <i class="b-primary update-icon ring"></i>
+                                                            </div>
+                                                            <div class="col pl-5">
+                                                                <h6>Priorité</h6>
+                                                                <p class="text-muted mb-0">{{ command_client.priority }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row pb-30">
+                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                <i class="b-primary update-icon ring"></i>
+                                                            </div>
+                                                            <div class="col pl-5">
+                                                                <h6>Date de commande</h6>
+                                                                <p class="text-muted mb-0">{{ command_client.dateCmd|date('Y-m-d') }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row pb-30">
+                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                <i class="b-success update-icon ring"></i>
+                                                            </div>
+                                                            <div class="col pl-5">
+                                                                <h6>Date de préparation</h6>
+                                                                <p class="text-muted mb-0">{{ command_client.datePreparation|date('Y-m-d') }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row pb-30">
+                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                <i class="b-primary update-icon ring"></i>
+                                                            </div>
+                                                            
+                                                            <div class="col pl-5">
+                                                                <h6>Date de paiement</h6>
+                                                                <p class="text-muted mb-0">{{ command_client.datePay|date('Y-m-d') }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row pb-30">
+                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                <i class="b-success update-icon ring"></i>
+                                                            </div>
+                                                            <div class="col pl-5">
+                                                                <h6>Poids total</h6>
+                                                                <p class="text-muted mb-0">
+                                                                    {{ command_client.totalAmount }}       
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-auto text-right update-meta pr-0">
+                                                                <i class="b-danger update-icon ring"></i>
+                                                            </div>
+                                                            <div class="col pl-5">
+                                                                <h6>Prix total</h6>
+                                                                <p class="text-muted mb-0"> {{ command_client.totalPrice }}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                                    {{ include('command_client/_delete_form.html.twig') }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Modal -->
+                                    {% else %}
+                                        <tr align="center">
+                                            <td colspan="17">Aucune commande</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- table-block -->
+
+        </div>
+    </div>
+
+{% endblock %}
