@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+<div class="main-content">
+	<div class="container">
+		{{ form_start(form) }}
+
+			<div class="col-md-12">
+				{{ form_row(form.title) }}
+			</div>
+
+
+			<div class="content pb-4">
+		        <div class="row">
+		            <div class="col-md-12 table-responsive">
+
+		                <div class="float-right pb-4">
+		                    <button type="button" class="btn btn-warning btn-lg add-record" data-added="0">
+		                        <i class="glyphicon glyphicon-plus"></i>
+		                        &nbsp;Ajouter
+		                    </button>
+		                </div>
+		                <table class="table" id="tbl_posts">
+		                    <thead>
+		                      <tr>
+		                        <th>#</th>
+		                        <th>Code</th>
+		                        <th>Nom</th>
+		                        <th>PRIX UNITAIRE</th>
+		                        <th>TVA</th>
+		                        <th>QTÉ COMMANDÉE</th>
+		                        <th>Action</th>
+		                      </tr>
+		                    </thead>
+		                    <tbody id="tbl_posts_body">
+		                      
+		                    </tbody>
+		                </table>
+		               
+		                <div style="display:none;">
+		                    <table id="sample_table">
+		                      <tr id="">
+		                        <td><span class="sn"></span>.</td>
+		                        <td>
+		                            <div class="form-group">
+		                                {{ form_widget(form.tags.vars.prototype) }}
+		                            </div>  
+		                        </td>
+		                       <td>
+		                          <div class="form-group">
+		                            <input type="text" class="form-control" placeholder="Nom">
+		                          </div> 
+		                       </td>
+		                       <td>
+		                           <div class="form-group">
+		                                <input type="number" class="form-control fprice" placeholder="PRIX UNITAIRE">
+		                            </div>
+		                       </td>
+		                       <td>
+		                           <div class="form-group">
+		                                <select class="form-control">
+		                                    <option>19.00%</option>
+		                                    <option>20.00%</option>
+		                                </select>
+		                            </div>
+		                       </td>
+		                       <td data-name="qte">
+		                            <div class="form-group">
+		                                <input type="number" class="form-control famount" placeholder="QTÉ COMMANDÉE">
+		                            </div>
+		                        </td>
+		                        <td data-name="del">
+		                            <a class="btn btn-danger glyphicon glyphicon-remove row-remove delete-record" data-id="0">
+		                                <span aria-hidden="true">×</span>
+		                            </a>
+		                        </td>
+		                     </tr>
+		                    </table>
+		                 </div>
+
+		            </div>
+		        </div>
+		    </div><!-- content -->
+			
+			<div>
+				<button class="btn btn-primary" type="submeit">Ajouter</button>
+			</div>
+		
+		{{ form_end(form) }}
+	</div>
+</div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{ asset('dist/js/script.js') }}"></script>
+   <!-- <script src="{{ asset('dist/js/add-collection-widget.js') }}"></script>-->
+{% endblock %}

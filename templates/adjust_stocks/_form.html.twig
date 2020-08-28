@@ -1,0 +1,42 @@
+{{ form_start(form) }}
+    <div class="content">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              {{ form_label(form.location, 'Emplacement') }}
+        	  {{ form_widget(form.location, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Emplacement'}}) }}
+            </div>
+            <div class="form-group col-md-6">
+              	{{ form_label(form.Raison, 'Raison') }}
+        		{{ form_widget(form.Raison, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Raison'}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-8">
+                {{ form_label(form.notes, 'Notes') }}
+        		{{ form_widget(form.notes, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Notes'}}) }}
+            </div>
+        </div>
+    </div><!-- content -->
+    
+    <div class="content">    
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                {{ form_label(form.type, 'Client/Projet Fournisseur/Projet') }}
+        		{{ form_widget(form.type, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Client/Projet Fournisseur/Projet'}}) 
+        	}}
+            </div>
+            <div class="form-group col-md-6">
+                {{ form_label(form.product, 'Produit') }}
+        		{{ form_widget(form.product, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Produit'}}) }}
+            </div>
+        </div>
+        <div class="row text-right">
+	        <div class="form-group pt-4">
+	            <button class="btn btn-warning btn-lg">
+	                {{ button_label|default('Confirmer') }}
+	            </button>
+	        </div>   
+        </div>
+    </div><!-- content -->
+{{ form_end(form) }}
+

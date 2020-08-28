@@ -3,7 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Product;
-use App\Entity\category;
+use App\Entity\Category;
+use App\Entity\Provider;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -22,11 +23,10 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('qrcode', HiddenType::class, [
-                'data' => 'dfg654dfg4se',
+                'data' => 'yytt654rt',
                 ])
             ->add('label', null)
             ->add('ref')
-            ->add('ref_provider')
             ->add('maker')
             ->add('ref_maker')
             ->add('description', TextareaType::class)
@@ -42,21 +42,26 @@ class ProductType extends AbstractType
                 'placeholder' => 'Catégories',
                 'label' => 'false',
             ])
+            ->add('provider', EntityType::class, [
+                'class' => Provider::class,
+                'choice_label' => 'name',
+                'placeholder' => 'Fournisseur',
+                'label' => 'false',
+            ])
             ->add('price', NumberType::class)
             ->add('unit', ChoiceType::class, [
+                'placeholder' => 'Devise',
                 'choices' => [
-                    'Unité' => null,
-                    'US' => 'us',
-                    'EURO' => 'euro',   
-                    'DINAR' => 'dinar',
+                    '$ (USD)' => 'usd',
+                    '€ (EUR)' => 'euro',   
+                    'ت.د (TND)' => 'tnd',
                 ],
             ])
+            ->add('step')
             ->add('color', null, [
                 'required'   => false,
             ])
-            ->add('weight', NumberType::class, [
-                'required'   => false,
-            ])
+            ->add('amount', NumberType::class)
             ->add('size', NumberType::class, [
                 'required'   => false,
             ])

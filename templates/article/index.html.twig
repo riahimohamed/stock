@@ -1,0 +1,16 @@
+{% block body %}
+	<h1>Liste des Articles</h1>
+	<ul>
+		{% for article in articles %}
+		    <li>{{ article.title }}</li>
+		    <ol>
+		    	{% for tag in article.tags %}
+		    	  <li>{{ tag.name }}</li>  
+		    	{% endfor %}
+		    	
+		    </ol>
+		    <hr/>
+		{% endfor %}
+	</ul>
+
+{% endblock %}

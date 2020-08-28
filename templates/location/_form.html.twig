@@ -1,4 +1,27 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+    <div class="row d-flex">
+        <div class="col-md-3">
+            <div class="form-group">
+                {{ form_widget(form.name, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Nom'}}) }}
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                {{ form_widget(form.fillRate, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Taux de remplissage %'}}) }}
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                {{ form_widget(form.category, {'attr': {'class': 'form-control form-control-lg'}}) }}
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <button class="btn btn-warning btn-lg btn-block">
+                    {{ button_label|default('Créer') }}
+                </button>
+            </div>
+        </div>
+    </div>
 {{ form_end(form) }}

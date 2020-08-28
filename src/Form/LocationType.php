@@ -3,6 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Location;
+use App\Entity\category;
+
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,7 +18,11 @@ class LocationType extends AbstractType
         $builder
             ->add('name')
             ->add('fillRate')
-            ->add('category')
+            ->add('category', EntityType::class, [
+                'class' => category::class,
+                'placeholder' => 'Catégories',
+                'label' => 'false',
+            ])
         ;
     }
 

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile {{ app.user.username }}{% endblock %}
+
+{% block body %}
+
+<div class="main-content">
+    <div class="container">
+
+        <div class="content-block">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title">
+                        <h1 class="h2 mt-0">
+                            <i class="ik ik-user"></i> Votre profile
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 pt-4">
+                {{ form_start(form) }}
+
+			        <div class="form-group">
+			            {{ form_widget(form.username, {'attr': { 'class': 'form-control', 'placeholder': "Nom d'utilisateur" } }) }}
+			            <div class="text-danger">
+			                {{ form_errors(form.username) }}
+			            </div>
+			        </div>
+			        <div class="form-group">
+			            {{ form_widget(form.lastName, {'attr': { 'class': 'form-control', 'placeholder': 'Nom' } }) }}
+			            <div class="text-danger">
+			                {{ form_errors(form.lastName) }}
+			            </div>
+			        </div>
+			        <div class="form-group">
+			            {{ form_widget(form.firstName, {'attr': { 'class': 'form-control', 'placeholder': 'Prénom' } }) }}
+			            <div class="text-danger">
+			                {{ form_errors(form.firstName) }}
+			            </div>
+			        </div>
+			        <div class="form-group">
+			            {{ form_widget(form.address, {'attr': { 'class': 'form-control', 'placeholder': 'Adresse' } }) }}
+			            <div class="text-danger">
+			                {{ form_errors(form.address) }}
+			            </div>
+			        </div>
+			        <div class="form-group">
+			            <div class="upload">
+                          <h4 class="font-weight-bold text-muted">
+                              Ajouter une image
+                            </h4>
+                            <div class="upload-btn-wrapper">
+                              <label class="image-btn btn-block">Télécharger image</label>
+                              {{ form_widget(form.avatar, {'attr': {'class': 'btn btn-lg btn-block' }}) }}
+                            </div>
+                            <div class="form-error">
+                                {{ form_errors(form.avatar) }}
+                            </div>
+                      	</div>
+			        </div>
+			        
+			        <div class="sign-btn">
+			            <button type="submit" class="btn btn-theme">Modifier</button>
+			        </div>
+			    {{ form_end(form) }}
+            </div>
+        </div><!-- content-block -->
+
+    </div>
+</div>
+    
+{% endblock %}

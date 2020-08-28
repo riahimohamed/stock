@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des commandes{% endblock %}
+{% block title %}Liste des commandes client{% endblock %}
 
 {% block body %}
 
@@ -64,7 +64,6 @@
                                         <tr>
                                             <th>Priorité</th>
                                             <th>Date creation</th>
-                                            <th>Emplacement</th>
                                             <th>N° commande</th>
                                             <th>Type de livraison</th>
                                             <th>Prix total</th>
@@ -78,8 +77,7 @@
                                             <td>
                                                 {{ command_client.createdAt ? command_client.createdAt|date('Y-m-d') : '' }}
                                             </td>
-                                            <td>{{ command_client.locale }}</td>
-                                            <td>{{ command_client.commentCmd }}</td>
+                                            <td>{{ command_client.nocmd }}</td>
                                             <td>{{ command_client.typeDelivery }}</td>
                                             <td>{{ command_client.totalPrice }}</td>
                                             <td>

@@ -1,144 +1,58 @@
 $(document).ready(function(){
+     jQuery(document).delegate('button.add-record', 'click', function(e) {
+     //e.preventDefault();    
+     var content = jQuery('#sample_table tr'),
+     size = jQuery('#tbl_posts >tbody >tr').length + 1,
+     element = null,    
+     element = content.clone();
+     element.attr('id', 'rec-'+size);
+     element.find('.delete-record').attr('data-id', size);
+     element.appendTo('#tbl_posts_body');
+     element.find('.sn').html(size);
+     
+   });
 
-var current_fs, next_fs, previous_fs; //fieldsets
-var opacity;
+   jQuery(document).delegate('#tbl_posts_body .famount', 'change', function(e){
+      e.preventDefault();
+      var s= 0;
+      $.each($('.famount'), function(){
+       if($( this ).val())
+          s += parseFloat($( this ).val());
+      });
+      
+      $("#command_client_totalAmount").val(s);
+      
+   });
 
-$(".next").click(function(){
+   jQuery(document).delegate('#tbl_posts_body .fprice', 'change', function(e){
+      e.preventDefault();
+      var p= 0;
+      $.each($('.fprice'), function(){
+       if($( this ).val())
+          p += parseFloat($( this ).val());
+      });
+      
+      $("#command_client_totalPrice").val(p);
+      
+   });
 
-current_fs = $(this).parent();
-next_fs = $(this).parent().next();
+    jQuery(document).delegate('a.delete-record', 'click', function(e){
+     e.preventDefault(); 
+      var id = jQuery(this).attr('data-id');
+      var targetDiv = jQuery(this).attr('targetDiv');
+      jQuery('#rec-' + id).remove();
+      
+      //regnerate index number on table
+      $('#tbl_posts_body tr').each(function(index){
+      $(this).find('span.sn').html(index+1);
 
-//Add Class Active
-$("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+      console.log($('span.sn').length-1);
 
-//show the next fieldset
-next_fs.show();
-//hide the current fieldset with style
-current_fs.animate({opacity: 0}, {
-step: function(now) {
-// for making fielset appear animation
-opacity = 1 - now;
-
-current_fs.css({
-'display': 'none',
-'position': 'relative'
-});
-next_fs.css({'opacity': opacity});
-},
-duration: 600
-});
-});
-
-$(".previous").click(function(){
-
-current_fs = $(this).parent();
-previous_fs = $(this).parent().prev();
-
-//Remove class active
-$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
-
-//show the previous fieldset
-previous_fs.show();
-
-//hide the current fieldset with style
-current_fs.animate({opacity: 0}, {
-step: function(now) {
-// for making fielset appear animation
-opacity = 1 - now;
-
-current_fs.css({
-'display': 'none',
-'position': 'relative'
-});
-previous_fs.css({'opacity': opacity});
-},
-duration: 600
-});
-});
-
-$('.radio-group .radio').click(function(){
-$(this).parent().find('.radio').removeClass('selected');
-$(this).addClass('selected');
-});
-
-$(".submit").click(function(){
-return false;
-})
-
-/*---- Add and remove -----*/
-$("#add_row").on("click", function() {
-        // Dynamic Rows Code
-        
-        // Get max row id and set new id
-        var newid = 0;
-        $.each($("#tab_logic tr"), function() {
-            if (parseInt($(this).data("id")) > newid) {
-                newid = parseInt($(this).data("id"));
-            }
-        });
-        newid++;
-        
-        var tr = $("<tr></tr>", {
-            id: "addr"+newid,
-            "data-id": newid
-        });
-        
-        // loop through each td and create new elements with name of newid
-        $.each($("#tab_logic tbody tr:nth(0) td"), function() {
-            var td;
-            var cur_td = $(this);
-            
-            var children = cur_td.children();
-            
-            // add new td and element if it has a nane
-            if ($(this).data("name") !== undefined) {
-                td = $("<td></td>", {
-                    "data-name": $(cur_td).data("name")
-                });
-                
-                var c = $(cur_td).find($(children[0]).prop('tagName')).clone().val("");
-                c.attr("name", $(cur_td).data("name") + newid);
-                c.appendTo($(td));
-                td.appendTo($(tr));
-            } else {
-                td = $("<td></td>", {
-                    'text': $('#tab_logic tr').length
-                }).appendTo($(tr));
-            }
-        });
-        
-        // add delete button and td
-        /*
-        $("<td></td>").append(
-            $("<button class='btn btn-danger glyphicon glyphicon-remove row-remove'></button>")
-                .click(function() {
-                    $(this).closest("tr").remove();
-                })
-        ).appendTo($(tr));
-        */
-        
-        // add the new row
-        $(tr).appendTo($('#tab_logic'));
-        
-        $(tr).find("td button.row-remove").on("click", function() {
-             $(this).closest("tr").remove();
-        });
-});
-
-    // Sortable Code
-    var fixHelperModified = function(e, tr) {
-        var $originals = tr.children();
-        var $helper = tr.clone();
-    
-        $helper.children().each(function(index) {
-            $(this).width($originals.eq(index).width())
-        });
-        
-        return $helper;
-    };
-
-    $(".table-sortable thead").disableSelection();
-
-    $("#add_row").trigger("click");
-
+       if($('#tbl_posts_body tr').length == 1 )
+          $("#command_client_totalAmount").val('0');
+          $("#command_client_totalPrice").val('0'); 
+      });
+      return true;
+  });
+  
 });

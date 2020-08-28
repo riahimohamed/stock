@@ -45,6 +45,7 @@ class ProductController extends AbstractController
             // this condition is needed because the 'brochure' field is not required
             // so the image file must be processed only when a file is uploaded
             if ($imageFile) {
+                
                 $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
                 // this is needed to safely include the file name as part of the URL
                 //$safeFilename = $slugger->slug($originalFilename);
@@ -66,6 +67,11 @@ class ProductController extends AbstractController
             }
 
             $product->setCreatedAt(new \DateTime());
+
+            $this->addFlash(
+                'success',
+                 'un nouveau produit s\'est ajouté'
+            );
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($product);
@@ -116,6 +122,12 @@ class ProductController extends AbstractController
     public function delete(Request $request, Product $product): Response
     {
         if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
+            
+            $this->addFlash(
+                'danger',
+                 'Le produit '.$product->getRef().' a été supprimé !'
+            );
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($product);
             $entityManager->flush();

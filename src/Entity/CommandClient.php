@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandClientRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -16,11 +18,6 @@ class CommandClient
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $locale;
 
     /**
      * @ORM\Column(type="string", length=20)
@@ -102,21 +99,21 @@ class CommandClient
      */
     private $totalPrice;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="commandClients")
+     */
+    private $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+
+        $this->createdAt = new \DateTime();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getLocale(): ?string
-    {
-        return $this->locale;
-    }
-
-    public function setLocale(string $locale): self
-    {
-        $this->locale = $locale;
-
-        return $this;
     }
 
     public function getType(): ?string
@@ -309,5 +306,35 @@ class CommandClient
         $this->totalPrice = $totalPrice;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|Product[]
+     */
+    public function getProducts(): Collection
+    {
+        return $this->products;
+    }
+
+    public function addProduct(Product $product): self
+    {
+        if (!$this->products->contains($product)) {
+            $this->products[] = $product;
+        }
+
+        return $this;
+    }
+
+    public function removeProduct(Product $product): self
+    {
+        if ($this->products->contains($product)) {
+            $this->products->removeElement($product);
+        }
+
+        return $this;
+    }
+
+    public function __toString(){
+        return $this->products;
     }
 }

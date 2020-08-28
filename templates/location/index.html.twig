@@ -1,37 +1,72 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Location index{% endblock %}
+{% block title %}Liste Emplacements{% endblock %}
 
 {% block body %}
+
 <div class="main-content">
-        <div class="container">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>FillRate</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for location in locations %}
-            <tr>
-                <td>{{ location.id }}</td>
-                <td>{{ location.name }}</td>
-                <td>{{ location.fillRate }}</td>
-                <td>
-                    <a href="{{ path('location_show', {'id': location.id}) }}">show</a>
-                    <a href="{{ path('location_edit', {'id': location.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="container">
+
+        <div class="content-block">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title">
+                        <h1 class="h2 mt-0">
+                            <i class="ik ik-tag"></i> Liste des Emplacements
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 pt-4">
+                {{ include('location/_form.html.twig') }}
+            </div>
+        </div><!-- content-block -->
+
+        <div class="table-block my-5">
+            <div class="col-md-12">
+                <div class="card table-card">
+                    <div class="card-header">
+                        <h3>Liste des données pour lesquelles on peut gérer des Emplacements :</h3>
+                    </div>
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Taux de remplissage</th>
+                                        <th>Catégorie</th>
+                                        <td>Action</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for location in locations %}
+                                        <tr>
+                                            <td>{{ location.name }}</td>
+                                            <td>{{ location.fillRate }}</td>
+                                            <td>{{ location.category }}</td>
+                                            <td class="d-flex">
+                                                <a href="{{ path('location_edit', {'id': location.id}) }}">
+                                                    <i class="ik ik-edit f-16 text-green"></i>
+                                                </a>
+                                                {{ include('location/_delete_form.html.twig') }}
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <tr>
+                                            <td align="center" colspan="16">
+                                                Aucune Emplacement</td>
+                                            </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- table-block -->
+
+    </div>
 </div>
-</div>
+
 {% endblock %}

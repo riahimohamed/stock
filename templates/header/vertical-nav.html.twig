@@ -17,7 +17,7 @@
         <div class="nav-container">
             <nav id="main-menu-navigation" class="navigation-main">
                 <div class="nav-lavel">Navigation</div>
-                <div class="nav-item active">
+                <div class="nav-item">
                     <a href="{{ path('home') }}">
                         <i class="fas fa-tachometer-alt"></i>
                         <span>Tableau de board</span>
@@ -64,16 +64,16 @@
                         <span>Achats fournisseurs</span> 
                     </a>
                     <div class="submenu-content">
-                        <a href="#" class="menu-item">
+                        <a href="{{ path('command_provider_index') }}" class="menu-item">
                             Nouvelle commande
                         </a>
-                        <a href="#" class="menu-item">
+                        <a href="{{ path('command_provider_new') }}" class="menu-item">
                             Liste commande
                         </a>
-                        <a href="#" class="menu-item">
+                        <a href="{{ path('provider_index') }}" class="menu-item">
                             Liste fournisseurs
                         </a>
-                        <a href="#" class="menu-item">
+                        <a href="{{ path('provider_new') }}" class="menu-item">
                             Créer fournisseur
                         </a>
                     </div>
@@ -84,35 +84,25 @@
                         <span>Stocks</span>
                     </a>
                     <div class="submenu-content">
-                        <a href="#" class="menu-item">
+                        <a href="{{ path('adjust_stocks_new') }}" class="menu-item">
                             Ajustement des stocks
-                        </a> 
-                        <a href="#" class="menu-item">
-                            Déplacement
                         </a>
                         <a href="#" class="menu-item">
                             Transfert
                         </a>
                     </div>
                 </div>
-                <div class="nav-item active">
-                    <a href="index.html">
+                <div class="nav-item">
+                    <a href="#">
                         <i class="fas fa-chart-line"></i>
                         <span>Rapport</span>
                     </a>
                 </div>
-                <div class="nav-item has-sub">
-                    <a href="#"><i class="fas fa-store"></i>
+                <div class="nav-item">
+                    <a href="{{ path('location_index') }}">
+                        <i class="fas fa-map-pin"></i>
                         <span>Emplacements</span>
                     </a>
-                    <div class="submenu-content">
-                        <a href="{{ path('location_new') }}" class="menu-item">
-                            Créer emplacement
-                        </a> 
-                        <a href="{{ path('location_index') }}" class="menu-item">
-                            Liste emplacement
-                        </a>
-                    </div>
                 </div>
                 <div class="nav-item has-sub">
                     <a href="#"><i class="fas fa-tags"></i>

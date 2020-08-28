@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CommandProvider{% endblock %}
+
+{% block body %}
+    <h1>CommandProvider</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ command_provider.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ command_provider.type }}</td>
+            </tr>
+            <tr>
+                <th>Priority</th>
+                <td>{{ command_provider.priority }}</td>
+            </tr>
+            <tr>
+                <th>Nocmd</th>
+                <td>{{ command_provider.nocmd }}</td>
+            </tr>
+            <tr>
+                <th>TypeDelivery</th>
+                <td>{{ command_provider.typeDelivery }}</td>
+            </tr>
+            <tr>
+                <th>ModePay</th>
+                <td>{{ command_provider.modePay }}</td>
+            </tr>
+            <tr>
+                <th>PercentPay</th>
+                <td>{{ command_provider.percentPay }}</td>
+            </tr>
+            <tr>
+                <th>DateCmd</th>
+                <td>{{ command_provider.dateCmd ? command_provider.dateCmd|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DatePreparation</th>
+                <td>{{ command_provider.datePreparation ? command_provider.datePreparation|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DatePay</th>
+                <td>{{ command_provider.datePay ? command_provider.datePay|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateSumit</th>
+                <td>{{ command_provider.dateSumit ? command_provider.dateSumit|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CommentCmd</th>
+                <td>{{ command_provider.commentCmd }}</td>
+            </tr>
+            <tr>
+                <th>CommentDelivery</th>
+                <td>{{ command_provider.commentDelivery }}</td>
+            </tr>
+            <tr>
+                <th>TotalWeight</th>
+                <td>{{ command_provider.totalWeight }}</td>
+            </tr>
+            <tr>
+                <th>TotalAmount</th>
+                <td>{{ command_provider.totalAmount }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ command_provider.createdAt ? command_provider.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>TotalPrice</th>
+                <td>{{ command_provider.totalPrice }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('command_provider_index') }}">back to list</a>
+
+    <a href="{{ path('command_provider_edit', {'id': command_provider.id}) }}">edit</a>
+
+    {{ include('command_provider/_delete_form.html.twig') }}
+{% endblock %}

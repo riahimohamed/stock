@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Provider{% endblock %}
+
+{% block body %}
+    <h1>Provider</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ provider.id }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ provider.type }}</td>
+            </tr>
+            <tr>
+                <th>Ref</th>
+                <td>{{ provider.ref }}</td>
+            </tr>
+            <tr>
+                <th>Account_name</th>
+                <td>{{ provider.accountName }}</td>
+            </tr>
+            <tr>
+                <th>Type_contact</th>
+                <td>{{ provider.typeContact }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ provider.name }}</td>
+            </tr>
+            <tr>
+                <th>Mobile</th>
+                <td>{{ provider.mobile }}</td>
+            </tr>
+            <tr>
+                <th>Fixe</th>
+                <td>{{ provider.fixe }}</td>
+            </tr>
+            <tr>
+                <th>Fax</th>
+                <td>{{ provider.fax }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ provider.email }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ provider.image }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ provider.createdAt ? provider.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('provider_index') }}">back to list</a>
+
+    <a href="{{ path('provider_edit', {'id': provider.id}) }}">edit</a>
+
+    {{ include('provider/_delete_form.html.twig') }}
+{% endblock %}

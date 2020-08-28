@@ -1,0 +1,176 @@
+{{ form_start(form) }}
+
+    <!-- progressbar -->
+    <div class="arrow-steps row pt-4 mx-auto">
+      <div class="step current col-md"> <span> Nouveau</span> </div>
+      <div class="step col-md"> <span>Préparation en cours</span> </div>
+      <div class="step col-md"> <span> Partiellement préparé</span> </div>
+      <div class="step col-md"> <span>Terminé</span> </div>
+    </div>
+
+    <div class="content">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              {{ form_label(form.type, 'Fournisseur/Projet') }}
+              {{ form_widget(form.type, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Fournisseur/Projet'}}) }}
+            </div>
+            <div class="form-group col-md-6">
+              {{ form_label(form.priority, 'Priorité') }}
+              {{ form_widget(form.priority, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Priorité'}}) }}
+            </div>
+        </div>
+    </div><!-- content -->
+    <div class="content">    
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              {{ form_label(form.nocmd, 'N° commande') }}
+              {{ form_widget(form.nocmd, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'N° commande'}}) }}
+            </div>
+			
+			<div class="form-group col-md-6">
+              {{ form_label(form.typeDelivery, 'Type de livraison') }}
+              {{ form_widget(form.typeDelivery, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Type de livraison'}}) }}
+            </div>
+
+            <div class="form-group col-md-6 mt-3">  
+              <div class="input-group input-group-lg">
+                  <div class="input-group-prepend">
+                    
+                    <label class="input-group-text" for="cat">PAIEMENT</label>
+                  </div>
+                  
+              	  {{ form_widget(form.modePay, {'attr': {'class': 'form-control custom-select', 'placeholder': 'Type de livraison'}}) }}
+              </div>
+
+            </div>
+        </div>
+    </div><!-- content -->
+    <div class="content border">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    {{ form_label(form.percentPay, 'Pourcentage paiement') }}
+              		{{ form_widget(form.percentPay, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Pourcentage paiement'}}) }}
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 form-group">
+                        {{ form_label(form.dateCmd, 'Date de commande') }}
+              			{{ form_widget(form.dateCmd, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Date de commande'}}) }}
+                    </div>
+                    <div class="col-md-6 col-sm-12 form-group">
+                        {{ form_label(form.datePay, 'Date de paiement') }}
+              			{{ form_widget(form.datePay, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Date de paiement'}}) }}
+                    </div>
+                    <div class="col-md-6 col-sm-12 form-group">
+                        {{ form_label(form.datePreparation, 'Date de préparation<') }}
+              			{{ form_widget(form.datePreparation, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Date de préparation'}}) }}
+                    </div>
+                    <div class="col-md-6 col-sm-12 form-group">
+                        {{ form_label(form.dateSumit, 'Date envoi') }}
+              			{{ form_widget(form.dateSumit, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Date envoi'}}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            {{ form_label(form.commentCmd, 'Commentaire commande') }}
+            {{ form_widget(form.commentCmd, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Commentaire commande'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(form.commentDelivery, 'Commentaire livraison') }}
+            {{ form_widget(form.commentDelivery, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Commentaire livraison'}}) }}
+        </div>
+    </div><!-- content -->
+
+    <div class="content pb-4">
+        <div class="row">
+            <div class="col-md-12 table-responsive">
+
+                <div class="float-right pb-4">
+                    <button type="button" class="btn btn-warning btn-lg add-record" data-added="0">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        &nbsp;Ajouter
+                    </button>
+                </div>
+                <table class="table" id="tbl_posts">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Code</th>
+                        <th>Nom</th>
+                        <th>PRIX UNITAIRE</th>
+                        <th>TVA</th>
+                        <th>QTÉ COMMANDÉE</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbl_posts_body">
+                      
+                    </tbody>
+                </table>
+               
+                <div style="display:none;">
+                    <table id="sample_table">
+                      <tr id="">
+                        <td><span class="sn"></span>.</td>
+                        <td>
+                            <div class="form-group">
+                                {{ form_widget(form.products.vars.prototype) }}
+                            </div>  
+                        </td>
+                       <td>
+                          <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nom">
+                          </div> 
+                       </td>
+                       <td>
+                           <div class="form-group">
+                                <input type="number" class="form-control fprice" placeholder="PRIX UNITAIRE">
+                            </div>
+                       </td>
+                       <td>
+                           <div class="form-group">
+                                <select class="form-control">
+                                    <option>19.00%</option>
+                                    <option>20.00%</option>
+                                </select>
+                            </div>
+                       </td>
+                       <td data-name="qte">
+                            <div class="form-group">
+                                <input type="number" class="form-control famount" placeholder="QTÉ COMMANDÉE">
+                            </div>
+                        </td>
+                        <td data-name="del">
+                            <a class="btn btn-danger glyphicon glyphicon-remove row-remove delete-record" data-id="0">
+                                <span aria-hidden="true">×</span>
+                            </a>
+                        </td>
+                     </tr>
+                    </table>
+                 </div>
+
+                <div class="row pt-4">
+                    <div class="form-group mr-2">
+                        {{ form_label(form.totalAmount, 'Qté total') }}
+                        {{ form_widget(form.totalAmount, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Qté total'}}) }}
+                    </div>
+                    <div class="form-group mr-2">
+                        {{ form_label(form.totalPrice, 'Prix total') }}
+                        {{ form_widget(form.totalPrice, {'attr': {'class': 'form-control form-control-lg', 'placeholder': 'Prix total'}}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- content -->
+    
+    <div class="mb-4 text-right">
+         <button type="submit" class=" btn btn-warning btn-lg mt-3 mr-3">
+            {{ button_label|default('Valier') }}
+         </button>   
+    </div>
+    
+
+{{ form_end(form) }}

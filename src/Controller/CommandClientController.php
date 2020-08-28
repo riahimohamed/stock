@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use App\Entity\CommandClient;
 use App\Form\CommandClientType;
+
+use App\Entity\Product;
+
 use App\Repository\CommandClientRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -31,11 +34,21 @@ class CommandClientController extends AbstractController
     public function new(Request $request): Response
     {
         $commandClient = new CommandClient();
+        
         $form = $this->createForm(CommandClientType::class, $commandClient);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            $var = $commandClient->getProducts();
+
+            foreach ($var as $key =>$value) {
+                var_dump($value);
+            }
+
+            die();
+
             $entityManager->persist($commandClient);
             $entityManager->flush();
 

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\LocationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class Location
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="locations")
      */
     private $category;
+
+    /**
+     * @ORM\OneToMany(targetEntity=AdjustStocks::class, mappedBy="location")
+     */
+    private $adjustStocks;
+
+    public function __construct()
+    {
+        $this->adjustStocks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -71,5 +83,40 @@ class Location
         $this->category = $category;
 
         return $this;
+    }
+
+    /**
+     * @return Collection|AdjustStocks[]
+     */
+    public function getAdjustStocks(): Collection
+    {
+        return $this->adjustStocks;
+    }
+
+    public function addAdjustStock(AdjustStocks $adjustStock): self
+    {
+        if (!$this->adjustStocks->contains($adjustStock)) {
+            $this->adjustStocks[] = $adjustStock;
+            $adjustStock->setLocation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdjustStock(AdjustStocks $adjustStock): self
+    {
+        if ($this->adjustStocks->contains($adjustStock)) {
+            $this->adjustStocks->removeElement($adjustStock);
+            // set the owning side to null (unless already changed)
+            if ($adjustStock->getLocation() === $this) {
+                $adjustStock->setLocation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString(){
+        return $this->name;
     }
 }

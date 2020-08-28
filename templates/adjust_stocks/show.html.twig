@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AdjustStocks{% endblock %}
+
+{% block body %}
+    <h1>AdjustStocks</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ adjust_stock.id }}</td>
+            </tr>
+            <tr>
+                <th>Raison</th>
+                <td>{{ adjust_stock.Raison }}</td>
+            </tr>
+            <tr>
+                <th>Notes</th>
+                <td>{{ adjust_stock.notes }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ adjust_stock.type }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ adjust_stock.createdAt ? adjust_stock.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('adjust_stocks_index') }}">back to list</a>
+
+    <a href="{{ path('adjust_stocks_edit', {'id': adjust_stock.id}) }}">edit</a>
+
+    {{ include('adjust_stocks/_delete_form.html.twig') }}
+{% endblock %}

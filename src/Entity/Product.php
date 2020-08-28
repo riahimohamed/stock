@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -33,11 +35,6 @@ class Product
      * @ORM\Column(type="string", length=50)
      */
     private $ref;
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $ref_provider;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -77,7 +74,7 @@ class Product
     /**
      * @ORM\Column(type="float", nullable=true)
      */
-    private $weight;
+    private $amount;
 
     /**
      * @ORM\Column(type="float", nullable=true)
@@ -99,6 +96,39 @@ class Product
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
      */
     private $category;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=CommandClient::class, mappedBy="products")
+     */
+    private $commandClients;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=CommandProvider::class, mappedBy="products")
+     */
+    private $commandProviders;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $step;
+
+    /**
+     * @ORM\OneToMany(targetEntity=AdjustStocks::class, mappedBy="product")
+     */
+    private $adjustStocks;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Provider::class, inversedBy="products")
+     */
+    private $provider;
+
+
+    public function __construct()
+    {
+        $this->commandClients = new ArrayCollection();
+        $this->commandProviders = new ArrayCollection();
+        $this->adjustStocks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -137,18 +167,6 @@ class Product
     public function setRef(string $ref): self
     {
         $this->ref = $ref;
-
-        return $this;
-    }
-
-    public function getRefProvider(): ?string
-    {
-        return $this->ref_provider;
-    }
-
-    public function setRefProvider(string $ref_provider): self
-    {
-        $this->ref_provider = $ref_provider;
 
         return $this;
     }
@@ -237,14 +255,14 @@ class Product
         return $this;
     }
 
-    public function getWeight(): ?float
+    public function getAmount(): ?float
     {
-        return $this->weight;
+        return $this->amount;
     }
 
-    public function setWeight(float $weight): self
+    public function setAmount(float $amount): self
     {
-        $this->weight = $weight;
+        $this->amount = $amount;
 
         return $this;
     }
@@ -298,7 +316,118 @@ class Product
     }
 
     public function __toString(){
-        return $this->category;
+        return (string) $this->category;
+    }
+
+    /**
+     * @return Collection|CommandClient[]
+     */
+    public function getCommandClients(): Collection
+    {
+        return $this->commandClients;
+    }
+
+    public function addCommandClient(CommandClient $commandClient): self
+    {
+        if (!$this->commandClients->contains($commandClient)) {
+            $this->commandClients[] = $commandClient;
+            $commandClient->addProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommandClient(CommandClient $commandClient): self
+    {
+        if ($this->commandClients->contains($commandClient)) {
+            $this->commandClients->removeElement($commandClient);
+            $commandClient->removeProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function getStep(): ?float
+    {
+        return $this->step;
+    }
+
+    public function setStep(float $step): self
+    {
+        $this->step = $step;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|CommandProvider[]
+     */
+    public function getCommandProviders(): Collection
+    {
+        return $this->commandProviders;
+    }
+
+    public function addCommandProvider(CommandProvider $commandProvider): self
+    {
+        if (!$this->commandProviders->contains($commandProvider)) {
+            $this->commandProviders[] = $commandProvider;
+            $commandProvider->addProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommandProvider(CommandProvider $commandProvider): self
+    {
+        if ($this->commandProviders->contains($commandProvider)) {
+            $this->commandProviders->removeElement($commandProvider);
+            $commandProvider->removeProduct($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|AdjustStocks[]
+     */
+    public function getAdjustStocks(): Collection
+    {
+        return $this->adjustStocks;
+    }
+
+    public function addAdjustStock(AdjustStocks $adjustStock): self
+    {
+        if (!$this->adjustStocks->contains($adjustStock)) {
+            $this->adjustStocks[] = $adjustStock;
+            $adjustStock->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAdjustStock(AdjustStocks $adjustStock): self
+    {
+        if ($this->adjustStocks->contains($adjustStock)) {
+            $this->adjustStocks->removeElement($adjustStock);
+            // set the owning side to null (unless already changed)
+            if ($adjustStock->getProduct() === $this) {
+                $adjustStock->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getProvider(): ?provider
+    {
+        return $this->provider;
+    }
+
+    public function setProvider(?provider $provider): self
+    {
+        $this->provider = $provider;
+
+        return $this;
     }
 
 }

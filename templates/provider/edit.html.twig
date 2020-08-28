@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier fournisseur{% endblock %}
+
+{% block body %}
+
+    <div class="main-content">
+	    <div class="container"></div>
+
+	    <div class="content-block">
+	        <div class="row">
+	            <div class="col-md-12">
+	                <div class="title">
+	                    <h1 class="h2 mt-0">
+	                        <i class="ik ik-user"></i> Ajouter fournisseur
+	                        <span class="text-muted h5">Données fournisseur</span>
+	                        <span class="float-right">
+                                <a href="{{ path('provider_index') }}">
+                                    <i class="ik ik-arrow-left-circle"></i>
+                                </a>
+                            </span>
+	                    </h1>
+	                </div>
+	            </div>
+	            
+	        </div>
+	    </div><!-- content-block -->
+
+	    <!-- MultiStep Form -->
+	    <div class="container-fluid">
+	        <div class="cards">
+    		{{ include('provider/_form.html.twig', {'button_label': 'Modifier'}) }}
+    		</div>
+    	</div>
+	</div>
+
+{% endblock %}

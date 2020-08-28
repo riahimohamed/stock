@@ -6,6 +6,8 @@
 parameters:
     product_directory: '%kernel.project_dir%/public/uploads/products'
     client_directory: '%kernel.project_dir%/public/uploads/clients'
+    provider_directory: '%kernel.project_dir%/public/uploads/providers'
+    user_directory: '%kernel.project_dir%/public/uploads/users'
     app.path.product_images: /uploads/images/products
 
 services:

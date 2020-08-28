@@ -69,9 +69,9 @@
 .input-qrcode label{
 	background-color: #d4d5d6 !important;
 }
-.form-block label, .section-prix label{
-	font-size: 18px;
-	font-weight: 600;
+label{
+	font-size: 20px;
+	font-weight: bold;
 	color: #464343;
 }
 .input-group .input-group-prepend .input-group-text {
@@ -89,136 +89,84 @@
 }
 
 /*------ Progress bar -------*/
-
-#msform {
+.arrow-steps .step {
+    font-size: 14px;
     text-align: center;
-    position: relative;
-    margin-top: 20px
-}
-
-#msform fieldset .form-card {
-    background: white;
-    border: 0 none;
-    border-radius: 0px;
-    padding: 20px 40px 30px 40px;
-    margin: 0 3% 20px 3%;
-    position: relative
-}
-
-#msform fieldset {
-    border: 0 none;
-    border-radius: 0.5rem;
-    box-sizing: border-box;
-    width: 100%;
-    margin: 0;
-    padding-bottom: 20px;
-    position: relative
-}
-
-#msform fieldset:not(:first-of-type) {
-    display: none
-}
-
-#msform fieldset .form-card {
-    text-align: left;
-    color: #9E9E9E
-}
-#msform .form-group{ 
-    text-align: left;
-}
-#msform .form-group label{
-    font-size: 18px;
-    font-weight: 600;
-}
-
-select.list-dt {
-    border: none;
-    outline: 0;
-    border-bottom: 1px solid #ccc;
-    padding: 2px 5px 3px 5px;
-    margin: 2px
-}
-
-.cards {
-    z-index: 0;
-    border: none;
-    border-radius: 0.5rem;
-    position: relative
-}
-
-.fs-title {
-    font-size: 25px;
-    color: #2C3E50;
-    margin-bottom: 10px;
-    font-weight: bold;
-    text-align: left
-}
-
-#progressbar {
-    margin-bottom: 30px;
-    overflow: hidden;
-    color: #5f5d5d;
-}
-
-#progressbar .active {
-    color: #000000
-}
-
-#progressbar li {
-    list-style-type: none;
-    font-size: 12px;
-    width: 25%;
+    color: #666;
+    cursor: default;
+    margin: 0 3px;
+    padding: 10px 10px 10px 30px;
+    min-width: 180px;
     float: left;
-    position: relative
+    position: relative;
+    background-color: #b4e7ff;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+  transition: background-color 0.2s ease;
 }
-
-#progressbar #account:before {
-    font-family: FontAwesome;
-    content: "\f067"
-}
-
-#progressbar #personal:before {
-    font-family: FontAwesome;
-    content: "\f110"
-}
-
-#progressbar #payment:before {
-    font-family: FontAwesome;
-    content: "\f0ae"
-}
-
-#progressbar #confirm:before {
-    font-family: FontAwesome;
-    content: "\f00c"
-}
-
-#progressbar li:before {
-    width: 50px;
-    height: 50px;
-    line-height: 45px;
-    display: block;
-    font-size: 18px;
-    color: #ffffff;
-    background: #5f5d5d;
-    border-radius: 50%;
-    margin: 0 auto 10px auto;
-    padding: 2px
-}
-
-#progressbar li:after {
-    content: '';
-    width: 100%;
-    height: 2px;
-    background: #5f5d5d;
+.arrow-steps .step:after,
+.arrow-steps .step:before {
+    content: " ";
     position: absolute;
-    left: 0;
-    top: 25px;
-    z-index: -1
+    top: 0;
+    right: -17px;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 17px solid #b4e7ff;    
+    z-index: 2;
+  transition: border-color 0.2s ease;
 }
+.arrow-steps .step:before {
+    right: auto;
+    left: 0;
+    border-left: 17px solid #fff;   
+    z-index: 0;
+}
+.arrow-steps .step:first-child:before {
+    border: none;
+}
+.arrow-steps .step:first-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.arrow-steps .step span {
+    position: relative;
+}
+.arrow-steps .step span:before {
+    opacity: 0;
+    content: "✔";
+    position: absolute;
+    top: -2px;
+    left: -20px;
+    color: #06ac77;
+}
+.arrow-steps .step.done span:before {
+    opacity: 1;
+    -webkit-transition: opacity 0.3s ease 0.5s;
+    -moz-transition: opacity 0.3s ease 0.5s;
+    -ms-transition: opacity 0.3s ease 0.5s;
+    transition: opacity 0.3s ease 0.5s;
+}
+.arrow-steps .step.current {
+    color: #fff;
+    background-color: #ff5050;
+}
+.arrow-steps .step.current:after {
+    border-left: 17px solid #ff5050;    
+}
+@media (max-width: 765px) {
+    .arrow-steps .step {
+        margin-top: 7px;
+    }
 
-#progressbar li.active:before,
-#progressbar li.active:after {
-    background: #fb6340;
+    .arrow-steps .step:after,
+    .arrow-steps .step:before {
+        content: none;
+    }
 }
 /*------ /Progress bar -------*/
 /*------ File upload ---------*/
@@ -249,7 +197,12 @@ select.list-dt {
 
 .alert-dismissible{
     position: absolute;
-    right: 4px;
+    right: 20px;
+
+    width: 30%;
+    height: 80px;
+    line-height: 50px;
+
     transform: translate(10px, 10px);
     transition-delay: 5s;
     z-index: 999;
@@ -271,4 +224,9 @@ select.list-dt {
     -moz-transform: translate(0,0);
     -o-transform: translate(0,0);
     -ms-transform: translate(0,0);
+}
+@media (max-width: 765px) {
+   .alert-dismissible{
+    width: 80%;
+   } 
 }

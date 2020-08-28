@@ -16,25 +16,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class LocationController extends AbstractController
 {
     /**
-     * @Route("/", name="location_index", methods={"GET"})
+     * @Route("/", name="location_index", methods={"GET","POST"})
      */
-    public function index(LocationRepository $locationRepository): Response
-    {
-        return $this->render('location/index.html.twig', [
-            'locations' => $locationRepository->findAll(),
-        ]);
-    }
-
-    /**
-     * @Route("/new", name="location_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
+    public function index(LocationRepository $locationRepository, Request $request): Response
     {
         $location = new Location();
         $form = $this->createForm(LocationType::class, $location);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->addFlash(
+                'success',
+                 'un nouvel emplacement s\'est ajouté'
+            );
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($location);
             $entityManager->flush();
@@ -42,7 +38,8 @@ class LocationController extends AbstractController
             return $this->redirectToRoute('location_index');
         }
 
-        return $this->render('location/new.html.twig', [
+        return $this->render('location/index.html.twig', [
+            'locations' => $locationRepository->findAll(),
             'location' => $location,
             'form' => $form->createView(),
         ]);
@@ -84,6 +81,12 @@ class LocationController extends AbstractController
     public function delete(Request $request, Location $location): Response
     {
         if ($this->isCsrfTokenValid('delete'.$location->getId(), $request->request->get('_token'))) {
+            
+            $this->addFlash(
+                'danger',
+                 'L\'emplacement '.$location->getName().' a été supprimé !'
+            );
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($location);
             $entityManager->flush();

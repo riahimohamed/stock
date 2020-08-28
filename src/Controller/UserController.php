@@ -30,11 +30,11 @@ class UserController extends AbstractController
 
             $hash = $encoder->encodePassword( $user , $user->getPassword());
             $user->setPassword($hash);
-            $user->setRoles(['ROLE_ADMIN']);
+            $user->setRoles(['ROLE_USER']);
 
             $this->addFlash(
                 'success',
-                 true
+                 'inscription réussi!'
             );
 
             $entityManager = $this->getDoctrine()->getManager();

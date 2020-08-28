@@ -67,6 +67,11 @@ class ClientController extends AbstractController
 
             $client->setCreatedAt(new \DateTime());
 
+            $this->addFlash(
+                'success',
+                 'Client ajouter avec réussi!'
+            );
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($client);
             $entityManager->flush();
@@ -116,6 +121,12 @@ class ClientController extends AbstractController
     public function delete(Request $request, Client $client): Response
     {
         if ($this->isCsrfTokenValid('delete'.$client->getId(), $request->request->get('_token'))) {
+            
+            $this->addFlash(
+                'danger',
+                 'Le client '.$client->getRef().' a été supprimé !'
+            );
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($client);
             $entityManager->flush();
