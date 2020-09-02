@@ -89,10 +89,19 @@
             <div class="col-md-12 table-responsive">
 
                 <div class="float-right pb-4">
+                    {% if products %}
                     <button type="button" class="btn btn-warning btn-lg add-record" data-added="0">
                         <i class="glyphicon glyphicon-plus"></i>
                         &nbsp;Ajouter
                     </button>
+                    {% else %}
+
+                      <button type="button" class="btn btn-warning btn-lg" disabled>
+                        <i class="glyphicon glyphicon-plus"></i>
+                        &nbsp;Ajouter
+                    </button>
+                    <span class="small">Aucune Produit</span>
+                    {% endif %}
                 </div>
                 <table class="table" id="tbl_posts">
                     <thead>
@@ -117,7 +126,7 @@
                         <td><span class="sn"></span>.</td>
                         <td>
                             <div class="form-group">
-                                {{ form_widget(form.products.vars.prototype) }}
+                                {{ form_widget(form.products.vars.prototype, {'attr': {'class': 'form-control form-control-lg'}}) }}
                             </div>  
                         </td>
                        <td>

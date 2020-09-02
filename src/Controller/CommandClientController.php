@@ -33,6 +33,9 @@ class CommandClientController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $repository = $this->getDoctrine()->getRepository(Product::class);
+        $products = $repository->findAll();
+
         $commandClient = new CommandClient();
         
         $form = $this->createForm(CommandClientType::class, $commandClient);
@@ -40,14 +43,6 @@ class CommandClientController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-
-            $var = $commandClient->getProducts();
-
-            foreach ($var as $key =>$value) {
-                var_dump($value);
-            }
-
-            die();
 
             $entityManager->persist($commandClient);
             $entityManager->flush();
@@ -57,6 +52,7 @@ class CommandClientController extends AbstractController
 
         return $this->render('command_client/new.html.twig', [
             'command_client' => $commandClient,
+            'products' => $products,
             'form' => $form->createView(),
         ]);
     }

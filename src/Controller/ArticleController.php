@@ -15,14 +15,30 @@ use Symfony\Component\Routing\Annotation\Route;
  * @Route("/article")
  */
 class ArticleController extends AbstractController
-{
+{	
+	public $arrayPrice = [];
+
     /**
      * @Route("/", name="article_index", methods={"GET"})
      */
     public function index(ArticleRepository $ar): Response
     {
+    	for ($i = 1; $i < 13; $i++) {
+    		$currMonth =  $ar->getTotalPrice('2020', $i);
+    		$lastMonth = $ar->getTotalPrice('2020', $i-1);
+
+    		if($lastMonth == 0){
+    			$lastMonth = 1;
+                $currMonth = 1;
+    		}
+    		
+    		$this->arrayPrice[] = (abs($currMonth - $lastMonth) / $lastMonth) * 100;
+    	}
+    	
+
         return $this->render('article/index.html.twig',[
         	'articles' => $ar->findAll(),
+        	'totalprices' => $this->arrayPrice
         ]);
     }
 

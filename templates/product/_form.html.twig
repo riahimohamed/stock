@@ -108,18 +108,19 @@
                       </div>
                   </div>
                   <div class="col-sm-4 py-4">
-                      <div class="upload">
-                          <h4 class="font-weight-bold text-muted">
-                              Ajouter une image
-                            </h4>
-                            <div class="upload-btn-wrapper">
-                              <label class="image-btn btn-block">Télécharger image</label>
-                              {{ form_widget(form.image, {'attr': {'class': 'btn btn-lg btn-block' }}) }}
-                            </div>
-                            <div class="form-error">
-                                {{ form_errors(form.image) }}
-                            </div>
-                      </div>
+
+                    <div id='img_container'>
+                      <img id="preview" src="{{asset('img/placeholder.png')}}" alt="your image" width="150" />
+                    </div> 
+                      <div class="input-group"> 
+                        <div class="custom-file">
+                        {{ form_widget(form.image, {'attr': {'class': 'imgInp custom-file-input' }}) }}
+                        <label class="custom-file-label" for="product_image">
+                          Télécharger image
+                        </label>
+                        </div>
+                    </div>
+                    
                   </div>
               </div>
           </div>

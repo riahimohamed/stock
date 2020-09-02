@@ -25,7 +25,7 @@ class Category
     private $name;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $createdAt;
 
@@ -43,6 +43,8 @@ class Category
     {
         $this->products = new ArrayCollection();
         $this->locations = new ArrayCollection();
+
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int

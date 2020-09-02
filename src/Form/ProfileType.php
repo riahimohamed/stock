@@ -20,7 +20,7 @@ class ProfileType extends AbstractType
             ->add('firstName')
             ->add('address')
             ->add('avatar', FileType::class, [
-                'mapped' => true,
+                'mapped' => false,
                 'required' => false,
                 'data_class' => null,
             ])

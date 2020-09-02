@@ -34,11 +34,13 @@
     </div>
 </form>
 
-<div class="register">
-    <p>
-        Je n'ai pas de compte? 
-        <a href="{{ path('security_register') }}">Inscription</a>
-    </p>
-</div>
+{% if  is_granted('ROLE_ADMIN') %}
+    <div class="register">
+        <p>
+            Je n'ai pas de compte? 
+            <a href="{{ path('security_register') }}">Inscription</a>
+        </p>
+    </div>
+{% endif %}
 
 {% endblock %}

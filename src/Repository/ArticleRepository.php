@@ -19,22 +19,26 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-    // /**
-    //  * @return Article[] Returns an array of Article objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Article[] Returns an array of Article objects
+     */
+    public function getTotalPrice($year, $month)
     {
+        $emConfig = $this->getEntityManager()->getConfiguration();
+        $emConfig->addCustomDatetimeFunction('YEAR', 'DoctrineExtensions\Query\Mysql\Year');
+        $emConfig->addCustomDatetimeFunction('MONTH', 'DoctrineExtensions\Query\Mysql\Month');
+
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            ->where('YEAR(a.createdAt) = :year')
+            ->andWhere('MONTH(a.createdAt) = :month')
+            ->setParameter('year', $year)
+            ->setParameter('month', $month)
+            ->select('SUM(a.price)')
             ->getQuery()
-            ->getResult()
+            ->getSingleScalarResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Article

@@ -47,7 +47,7 @@ class SecurityController extends AbstractController
 
             // this condition is needed because the 'brochure' field is not required
             // so the image file must be processed only when a file is uploaded
-            if ($imageFile) {
+            if ($imageFile !=null ) {
                 
                 $originalFilename = pathinfo($imageFile->getClientOriginalName(), PATHINFO_FILENAME);
                 // this is needed to safely include the file name as part of the URL

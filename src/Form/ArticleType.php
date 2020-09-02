@@ -18,19 +18,19 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('tags', CollectionType::class, [
-                'entry_type' => EntityType::class,
-                'entry_options'  => [
-                    'class' => Tag::class,
-                    'choice_label' => 'name',
-                    'label' => false,
-                ],
-                'label' => false,
-                'allow_add' => true,
-                'allow_delete' => true,
-                'prototype' => true,
-                'by_reference' => false,
-            ])
+            // ->add('tags', CollectionType::class, [
+            //     'entry_type' => EntityType::class,
+            //     'entry_options'  => [
+            //         'class' => Tag::class,
+            //         'choice_label' => 'name',
+            //         'label' => false,
+            //     ],
+            //     'label' => false,
+            //     'allow_add' => true,
+            //     'allow_delete' => true,
+            //     'prototype' => true,
+            //     'by_reference' => false,
+            // ])
         ;
     }
 

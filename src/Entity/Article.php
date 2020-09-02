@@ -25,13 +25,17 @@ class Article
     private $title;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Tag::class, inversedBy="articles")
+     * @ORM\Column(type="float")
      */
-    private $tags;
+    private $price;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $createdAt;
 
     public function __construct()
     {
-        $this->tags = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -51,28 +55,26 @@ class Article
         return $this;
     }
 
-    /**
-     * @return Collection|Tag[]
-     */
-    public function getTags(): Collection
+    public function getPrice(): ?float
     {
-        return $this->tags;
+        return $this->price;
     }
 
-    public function addTag(Tag $tag): self
+    public function setPrice(float $price): self
     {
-        if (!$this->tags->contains($tag)) {
-            $this->tags[] = $tag;
-        }
+        $this->price = $price;
 
         return $this;
     }
 
-    public function removeTag(Tag $tag): self
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        if ($this->tags->contains($tag)) {
-            $this->tags->removeElement($tag);
-        }
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }

@@ -2,6 +2,35 @@
 
 {% block title %}Creation client{% endblock %}
 
+{% block javascripts %}
+    
+	<script>
+    	$("#client_image").change(function(event) {  
+		  readURL(this);    
+		});
+		function readURL(input) {    
+		  if (input.files && input.files[0]) {   
+		    var reader = new FileReader();
+		    var filename = $("#client_image").val();
+		    filename = filename.substring(filename.lastIndexOf('\\')+1);
+		    reader.onload = function(e) {
+		      debugger;      
+		      $('#preview').attr('src', e.target.result);
+		      $('#preview').hide();
+		      $('#preview').fadeIn(500);      
+		      $('.custom-file-label').text(filename);             
+		    }
+		    reader.readAsDataURL(input.files[0]);    
+		  } 
+		  $(".alert").removeClass("loading").hide();
+		}
+		function FadeInAlert(text){
+		  $(".alert").show();
+		  $(".alert").text(text).addClass("loading");  
+		}
+    </script>
+{% endblock %}
+
 {% block body %}
 	<div class="main-content">
 	    <div class="container"></div>

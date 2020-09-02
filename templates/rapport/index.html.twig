@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rapport{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_draw(linechart, 'div_chart') }}
+    </script>
+{% endblock %}
+
+{% block body %}
+
+<div class="main-content">
+    <div class="container">
+
+	    <div class="content-block">
+	        <div class="row">
+	            <div class="col-md-12">
+	                <div class="title">
+	                    <h1 class="h2 mt-0">
+	                        <i class="ik ik-pie-chart"></i> Reporting
+	                    </h1>
+	                </div>
+	            </div>
+	            
+	        </div>
+	    </div><!-- content-block -->
+
+	    <!-- MultiStep Form -->
+	    <div class="container-fluid">
+	        <div class="content">
+
+				<ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+				  <li class="nav-item" role="presentation">
+				    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Stocks</a>
+				  </li>
+				  <li class="nav-item" role="presentation">
+				    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Produits</a>
+				  </li>
+				  <li class="nav-item" role="presentation">
+				    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Ventes</a>
+				  </li>
+				  <li class="nav-item" role="presentation">
+				    <a class="nav-link" id="buy-tab" data-toggle="tab" href="#buy" role="tab" aria-controls="buy" aria-selected="false">Achats</a>
+				  </li>
+				</ul>
+				<div class="tab-content" id="myTabContent">
+				  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+				  	<h2 class="pt-50">Evolution des stocks en nombre</h2>
+				  	<div id="div_chart"></div>
+				  </div>
+
+				  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+				  	<h2 class="pt-50">Liste des produits</h2>
+				  </div>
+
+				  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+				  	<h2 class="pt-50">Chiffres d'affaires des ventes</h2>
+				  </div>
+
+				  <div class="tab-pane fade" id="buy" role="tabpanel" aria-labelledby="buy-tab">
+				  	<h2 class="pt-50">Valeurs d'achats</h2>
+				  </div>
+				</div>
+				
+	        </div> <!-- /content -->
+		</div>
+
+	</div>
+</div>
+
+{% endblock %}

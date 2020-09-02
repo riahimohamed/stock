@@ -19,32 +19,20 @@ class CommandClientRepository extends ServiceEntityRepository
         parent::__construct($registry, CommandClient::class);
     }
 
-    // /**
-    //  * @return CommandClient[] Returns an array of CommandClient objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function getTotalPrice($year, $month)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+        $emConfig = $this->getEntityManager()->getConfiguration();
+        $emConfig->addCustomDatetimeFunction('YEAR', 'DoctrineExtensions\Query\Mysql\Year');
+        $emConfig->addCustomDatetimeFunction('MONTH', 'DoctrineExtensions\Query\Mysql\Month');
 
-    /*
-    public function findOneBySomeField($value): ?CommandClient
-    {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
+            ->where('YEAR(c.createdAt) = :year')
+            ->andWhere('MONTH(c.createdAt) = :month')
+            ->setParameter('year', $year)
+            ->setParameter('month', $month)
+            ->select('SUM(c.totalPrice)')
             ->getQuery()
-            ->getOneOrNullResult()
+            ->getSingleScalarResult()
         ;
     }
-    */
 }

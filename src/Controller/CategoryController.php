@@ -28,8 +28,6 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $category->setCreatedAt(new \DateTime());
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($category);
             $entityManager->flush();

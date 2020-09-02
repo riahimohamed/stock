@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use App\Entity\CommandProvider;
 use App\Form\CommandProviderType;
+
+use App\Entity\Product;
+
 use App\Repository\CommandProviderRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,6 +33,9 @@ class CommandProviderController extends AbstractController
      */
     public function new(Request $request): Response
     {
+        $repository = $this->getDoctrine()->getRepository(Product::class);
+        $products = $repository->findAll();
+
         $commandProvider = new CommandProvider();
         $form = $this->createForm(CommandProviderType::class, $commandProvider);
         $form->handleRequest($request);
@@ -70,6 +76,7 @@ class CommandProviderController extends AbstractController
 
         return $this->render('command_provider/new.html.twig', [
             'command_provider' => $commandProvider,
+            'products' => $products,
             'form' => $form->createView(),
         ]);
     }

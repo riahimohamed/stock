@@ -9,12 +9,13 @@
     right: 30px;
 }
 .content{
-	margin-left: 20px;
+	 margin-left: 20px;
     margin-right: 20px;
     margin-top: 20px;
     padding: 30px 20px;
     background-color: #ffff;
     border-radius: 5px;
+    overflow: auto;
 }
 .content .form-group{
     text-align: left;
@@ -202,6 +203,7 @@ label{
     width: 30%;
     height: 80px;
     line-height: 50px;
+    font-size: 18px;
 
     transform: translate(10px, 10px);
     transition-delay: 5s;
@@ -229,4 +231,38 @@ label{
    .alert-dismissible{
     width: 80%;
    } 
+}
+
+#preview{  
+  max-height:256px;
+  height:auto;
+  display:block;
+  padding:5px;
+}
+#img_container{
+  border-radius:5px;
+  margin-top:20px;
+  width:auto;  
+}
+.input-group{
+  margin-bottom:40px;
+  width:100%;
+}
+.imgInp{  
+  width:150px;
+  margin-top:10px;
+  padding:10px;
+  background-color:#d3d3d3;  
+}
+.loading{
+   animation:blinkingText ease 2.5s infinite;
+}
+@keyframes blinkingText{
+    0%{     color: #000;    }     
+    50%{   color: #transparent; }
+    99%{    color:transparent;  }
+    100%{ color:#000; }
+}
+.custom-file-label{
+  cursor:pointer;
 }

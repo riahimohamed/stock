@@ -1,16 +1,17 @@
 {% block body %}
 	<h1>Liste des Articles</h1>
-	<ul>
+	<p>
+	{% for totalprice in totalprices %}
+	   {{ totalprice|number_format  }} %<br>
+	{% endfor %}
+	
+	</p>
+	<!-- <ul>
 		{% for article in articles %}
 		    <li>{{ article.title }}</li>
-		    <ol>
-		    	{% for tag in article.tags %}
-		    	  <li>{{ tag.name }}</li>  
-		    	{% endfor %}
-		    	
-		    </ol>
+		    <li>{{ article.price }} - {{ article.createdAt | date('Y-m') }}</li>
 		    <hr/>
 		{% endfor %}
-	</ul>
+	</ul> -->
 
 {% endblock %}
