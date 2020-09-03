@@ -47,6 +47,8 @@ class HomeController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(Location::class);
         $locations = $repository->findAll();
 
+        $data = [['Mois', 'Achats', 'Ventes']];
+
         for ($i = 1; $i < 13; $i++) {
             $currMonth =  $cmdClient->getTotalPrice('2020', '0'+$i);
             $lastMonth = $cmdClient->getTotalPrice('2020', '0'+ ($i-1));
@@ -58,25 +60,13 @@ class HomeController extends AbstractController
             
             $array = (abs($currMonth - $lastMonth) / $lastMonth) * 100;
 
-            $data[] = [new DateTime('2020-'.$i),  $array, 0];
+            $data[] = array(new DateTime('2020-'.$i),  $array, 0);
         }
         
        $chart = new \CMEN\GoogleChartsBundle\GoogleCharts\Charts\Material\LineChart();
-        $chart->getData()->setArrayToDataTable([
-            ['Mois', 'Achats', 'Ventes'],
-            $data[0],
-            $data[1],
-            $data[2],
-            $data[3],
-            $data[4],
-            $data[5],
-            $data[6],
-            $data[7],
-            $data[8],
-            $data[9],
-            $data[10],
-            $data[11]
-        ]);
+        $chart->getData()->setArrayToDataTable(
+            $data
+        );
 
         $chart->getOptions()->getChart()
             ->setTitle('Chiffres d\'affaires par mois 2020');
