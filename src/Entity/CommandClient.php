@@ -100,7 +100,7 @@ class CommandClient
     private $totalPrice;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="commandClients")
+     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="commandClients",cascade={"persist"})
      */
     private $products;
 

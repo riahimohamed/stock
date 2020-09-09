@@ -128,6 +128,8 @@ class Product
         $this->commandClients = new ArrayCollection();
         $this->commandProviders = new ArrayCollection();
         $this->adjustStocks = new ArrayCollection();
+
+        $this->createdAt = new \DateTime();
     }
 
     public function getId(): ?int

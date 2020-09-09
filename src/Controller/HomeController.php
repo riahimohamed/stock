@@ -15,6 +15,8 @@ use CMEN\GoogleChartsBundle\GoogleCharts\Charts\LineChart;
 use \DateTime;
 
 use App\Repository\CommandClientRepository;
+use App\Repository\ProductRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,7 +26,9 @@ class HomeController extends AbstractController
     /**
      * @Route("/home", name="home")
      */
-    public function index(CommandClientRepository $cmdClient): Response{
+    public function index(CommandClientRepository $cmdClient, ProductRepository $product): Response{
+
+        $step = $product->findStep();
 
     	$repository = $this->getDoctrine()->getRepository(Product::class);
     	$products = $repository->findAll();
@@ -75,6 +79,7 @@ class HomeController extends AbstractController
             ->setWidth(900);
 
         return $this->render('home/index.html.twig',[
+            'step' => $step,
         	'products' => $products,
         	'clients' => $clients,
             'providers' => $providers,
@@ -89,8 +94,12 @@ class HomeController extends AbstractController
     /**
      * @Route("/step", name="step_index")
      */
-    public function step(){
+    public function step(ProductRepository $product){
 
-        return $this->render('home/step.html.twig');
+        $products = $product->findStep();
+
+        return $this->render('home/step.html.twig', [
+            'products' => $products
+        ]);
     }
 }

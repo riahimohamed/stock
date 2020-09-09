@@ -66,8 +66,6 @@ class ProductController extends AbstractController
                 $product->setImage($newFilename);
             }
 
-            $product->setCreatedAt(new \DateTime());
-
             $this->addFlash(
                 'success',
                  'un nouveau produit s\'est ajouté'

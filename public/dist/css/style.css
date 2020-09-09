@@ -88,7 +88,14 @@ label{
 .btn-height{
 	height: 50px;
 }
-
+.alert-auto{
+  position: static;
+}
+.alert-auto .badge{
+  position: absolute;
+  right: 15px;
+  top: -5px;
+}
 /*------ Progress bar -------*/
 .arrow-steps .step {
     font-size: 14px;

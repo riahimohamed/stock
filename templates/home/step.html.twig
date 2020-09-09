@@ -36,11 +36,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td align="center" colspan="3">
-                                            Aucune Produit
-                                        </td>
-                                    </tr>
+                                    {% for product in products %}
+                                        <tr>
+                                            <td>
+                                                {{ product.label }}
+                                            </td>
+                                            <td>
+                                                {{ product.ref }}
+                                            </td>
+                                            <td>
+                                                {{ product.amount }}
+                                            </td>
+                                        </tr>
+                                        {% else %}
+                                        <tr>
+                                            <td align="center" colspan="3">
+                                                Aucune Produit
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    
                                 </tbody>
                             </table>
                         </div>

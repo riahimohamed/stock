@@ -6,7 +6,7 @@ var $newLinkLi = $('<li></li>').append($addTagButton);
 
 jQuery(document).ready(function() {
     // Get the ul that holds the collection of tags
-    $collectionHolder = $('ul.tags');
+    $collectionHolder = $('ul.products');
 
     // add the "add a tag" anchor and li to the tags ul
     $collectionHolder.append($newLinkLi);
@@ -20,7 +20,6 @@ jQuery(document).ready(function() {
         addTagForm($collectionHolder, $newLinkLi);
     });
 });
-
 function addTagForm($collectionHolder, $newLinkLi) {
     // Get the data-prototype explained earlier
     var prototype = $collectionHolder.data('prototype');

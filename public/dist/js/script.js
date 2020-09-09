@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(document).ready(function(){  
      jQuery(document).delegate('button.add-record', 'click', function(e) {
      //e.preventDefault();    
      var content = jQuery('#sample_table tr'),

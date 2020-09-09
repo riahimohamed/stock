@@ -203,13 +203,15 @@
 
         <div class="row clearfix">
             <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="widget bg-primary">
+                <div class="widget bg-primary alert-auto">
+                    <span class="badge badge-pill badge-danger mb-1">
+                        {{ step|length }}
+                    </span>
                     <div class="widget-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <a href="{{ path('step_index') }}" class="text-white">
                             <div class="state">
                                 <h6>Alertes automatiques</h6>
-                                <h2></h2>
                             </div>
                             </a>
                             <div class="icon">
